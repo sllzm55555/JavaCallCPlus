@@ -5,7 +5,7 @@ public class CL1SetOpt {
     static {
         //C:\Users\Administrator\Desktop\class
       // System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
-       System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
+       System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
     }
    // public native
     /*
@@ -95,6 +95,7 @@ public class CL1SetOpt {
         byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         tmpL1SetOpt.set_userData_aux(DFSLProID,(byte)0x6,(byte)0x6,(byte)0x0,tmpPwd);
         tmpL1SetOpt.send_buf_server(DFSLProID);
+        System.out.println(111);
 
     }
 }
