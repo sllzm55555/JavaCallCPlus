@@ -2,6 +2,7 @@ package orientIntelligent.jni;
 
 
 public class CL1SetOpt {
+
     static {
         //C:\Users\Administrator\Desktop\class
       // System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
@@ -59,6 +60,11 @@ public class CL1SetOpt {
         System.out.println("hello test in");
     }
     public static void main(String[] args) {
+        DFSLProtest();
+    }
+
+    public static void DFSLProtest()
+    {
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
         int DFSLProID = tmpL1SetOpt.register_DFSLProOptS();
         //tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
@@ -84,7 +90,7 @@ public class CL1SetOpt {
         boolean fcbBit = true;
         //step4 call set_ctlFieldC_all
         tmpL1SetOpt.set_ctlFieldC_all(DFSLProID,Cenumclass.E_transDir.E_TD_SVR_REQUEST,
-                        fcvBit,fcbBit, Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);
+                fcvBit,fcbBit, Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);
         //(3)set_userData_appFuncCode
         Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.E_AFC_LKDT;
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
@@ -98,4 +104,5 @@ public class CL1SetOpt {
         System.out.println(111);
 
     }
+
 }
