@@ -62,7 +62,7 @@ public class CCommunicate {
             System.out.println(time.sec_digit+"秒");
             System.out.println("ret:"+ret.name());
         }
-
+        //step5 读取事件计数器
         CEvent event = tmpL1GetOpt.get_userData_dataUnit_events(DFSLProID);
         if(null == event)
         {
@@ -130,7 +130,7 @@ public class CCommunicate {
                     break;
             }
         }
-        //错误的帧方向
+        //错误的帧传输方向
         else
         {
             //TODO Error handling

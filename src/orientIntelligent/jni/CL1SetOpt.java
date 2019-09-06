@@ -53,7 +53,7 @@ public class CL1SetOpt extends CDFSLProOpt{
         System.out.println("hello test in");
     }
     public static void main(String[] args) {
-        DFSLProL1GetTest();
+        DFSLProL1SetTest();
     }
 
     public static void DFSLProL1SetTest()
@@ -98,74 +98,5 @@ public class CL1SetOpt extends CDFSLProOpt{
         System.out.println(111);
     }
 
-    public static void DFSLProL1GetTest(){
-        CL1GetOpt tmpL1GetOpt = new CL1GetOpt();
-        //step1 注册协议操作集
-        int DFSLProID = tmpL1GetOpt.register_DFSLProOptS();
-        byte bytes[] = {0x68 ,0x14 ,0x00 ,0x14 ,0x00 ,0x68 ,0x59 ,(byte)0x86 ,(byte)0x80 ,0x03  ,(byte)0x99 ,0x00 ,0x00 ,0x00 ,0x02 ,(byte)0xF0 ,0x00 ,0x00 ,0x01 ,0x00
-                ,0x00 ,0x54 ,0x10 ,0x10 ,0x05 ,0x00 ,0x75 ,0x16};
-        //step2  检查数据包完整性
-        Cenumclass.E_CheckPackage ret = tmpL1GetOpt.check_package(DFSLProID,bytes);
-        if(ret != Cenumclass.E_CheckPackage.E_CKPKG_SUCCESS)
-        {
-            System.out.println("Error to check package");
-            return;
-        }
-        //step3 获取消息验证码
-        byte[] pwd = tmpL1GetOpt.get_userData_dataUnit_pwd(DFSLProID);
-        if(pwd == null)
-        {
-            System.out.println("bytes is null");
-        }
-        else
-        {
-            for(byte e:pwd)
-            {
-                System.out.print("e:"+e+" ");
-            }
-            System.out.println(" ");
-        }
-
-        //step4 读取打包时间
-        CS_A16 time = tmpL1GetOpt.get_userData_dataUnit_time(DFSLProID);
-        if(null == time)
-        {
-            System.out.println("未发现时间标签");
-        }
-        else
-        {
-            System.out.print(time.day_decade);
-            System.out.print(time.day_digit+"日");
-            System.out.print(time.hour_decade);
-            System.out.print(time.hour_digit+"时");
-            System.out.print(time.min_decade);
-            System.out.print(time.min_digit+"分");
-            System.out.print(time.sec_decade);
-            System.out.println(time.sec_digit+"秒");
-            System.out.println("ret:"+ret.name());
-        }
-
-
-        CEvent event = tmpL1GetOpt.get_userData_dataUnit_events(DFSLProID);
-        if(null == event)
-        {
-            System.out.println("未发现事件计数器");
-        }
-        else
-        {
-            System.out.println("important count:"+event.importantCount);
-            System.out.println("general count:"+event.generalCount);
-        }
-
-        Cenumclass.E_ctlFunCode ctlFunCode = tmpL1GetOpt.get_ctlField_CFFuncCode(DFSLProID);
-        System.out.println("ctlFunCode:"+ctlFunCode.name());
-
-        Cenumclass.E_transDir transDir = tmpL1GetOpt.get_ctlField_DIR(DFSLProID);
-        System.out.println("transDir:"+transDir.name());
-
-        Cenumclass.E_appFuncCode appFuncCode = tmpL1GetOpt.get_userData_appFuncCode(DFSLProID);
-        System.out.println("appFuncCode:"+appFuncCode.name());
-        tmpL1GetOpt.unRegister_DFSLProOptS(DFSLProID);
-    }
 
 }
