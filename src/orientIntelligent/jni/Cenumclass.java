@@ -1,6 +1,39 @@
 package orientIntelligent.jni;
 
 public class Cenumclass {
+    /*public Cenumclass()
+    {
+
+    }*/
+    enum E_CheckPackage{
+        E_CKPKG_FRAMEERR((byte)1),	//帧错误   ，不能解析数据区
+        E_CKPKG_CONTINUE((byte)2),	//有后续帧	，还需要接收完后续帧才能解析数据区
+        E_CKPKG_SUCCESS((byte)3),	//可以进行数据区的解析
+        E_CKPKG_MALLOCERR((byte)4),	//申请内存错误
+        E_CKPKG_INITERR((byte)5),	//函数指针初始化失败
+        E_CKPKG_TIMEOUT((byte)6);
+        private byte value;
+        E_CheckPackage (byte val){
+            this.value = val;
+        }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_CheckPackage e : Cenumclass.E_CheckPackage.values()) {
+               // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
+        public byte getValue() {
+            return value;
+        }
+    }
 
     enum E_transDir {
         //E_downlink_QT2ROBOT=0,
@@ -15,6 +48,19 @@ public class Cenumclass {
         E_transDir(byte val)
         {
             this.value = val;
+        }
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_transDir e : Cenumclass.E_transDir.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
         }
         public byte getValue()
         {
@@ -40,6 +86,19 @@ public class Cenumclass {
          E_ctlFunCode(byte val)
         {
             this.value = val;
+        }
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_ctlFunCode e : Cenumclass.E_ctlFunCode.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
         }
         public byte getValue()
         {
@@ -71,6 +130,19 @@ public class Cenumclass {
         {
             this.value = val;
         }
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_appFuncCode e : Cenumclass.E_appFuncCode.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
         public byte getValue()
         {
             return this.value;
@@ -87,7 +159,19 @@ public class Cenumclass {
         {
             this.value = val;
         }
-
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_LinkDetection e : Cenumclass.E_LinkDetection.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
         public byte getValue() {
             return value;
         }
