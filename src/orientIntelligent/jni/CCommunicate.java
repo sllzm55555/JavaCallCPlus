@@ -79,6 +79,10 @@ public class CCommunicate {
         System.out.println("ctlFunCode:"+ctlFunCode.name());
 
         Cenumclass.E_transDir transDir = tmpL1GetOpt.get_ctlField_DIR(DFSLProID);
+        CEvent event2 = new CEvent((byte)1,(byte)2);
+        System.out.println("event2.generalCount"+event2.generalCount);
+        System.out.println("event2.importantCount"+event2.importantCount);
+
         System.out.println("transDir:"+transDir.name());
         //终端请求
         if(transDir == Cenumclass.E_transDir.E_TD_TML_REQUEST)
