@@ -176,56 +176,122 @@ public class Cenumclass {
             return value;
         }
     }
+
+     enum E_Pn
+    {
+        E_PN_TERMAL((byte)0x00),			//表示终端本身
+        E_PN_WATERQUALITY1((byte)0x01),	//水质感器测量点
+        E_PN_HYDROLOGICAL((byte)0x02),		//水文传感器测量点
+        E_PN_IMU((byte)0x03),				//姿态传感器测量点
+        E_PN_METEOROLOGICAL((byte)0x04),   	//气象传感器测量点
+        E_PN_ULTRASONIC((byte)0x05),    	//超声传感器测量点
+        E_PN_ULTRASONIC_ARRY((byte)0x06),  	//超声波阵列传感器测量点
+        E_PN_MMWAVE((byte)0x07),    		//毫米波传感器测量点
+        E_PN_MMWAVE_ARRY((byte)0x08),  		//毫米波阵列传感器测量点
+
+        E_PN_POSITION((byte)0x09),  		//位置信息GPS OR 北斗测量点
+        E_PN_EXTENSIONARM((byte)0x0a),		//伸展臂 即清污机构
+        E_PN_ELECTRICALMACHINE((byte)0x0b),	//电机
+        E_PN_WAREVERSION((byte)0x0c),		//固件和软件版本
+        E_PN_RGBD((byte)0x0d),    			//RGB-D测量点
+        E_PN_360CAMERA1((byte)0x0e),//360全景摄像头2测量点
+        E_PN_360CAMERA3((byte)0x0f),    	//360全景摄像头3测量点
+        E_PN_360CAMERA4((byte)0x11),    	//360全景摄像头4测量点
+        E_PN_MAX((byte)0x12);
+
+        /*E_PN_TERMAL((byte)0x00),			//表示终端本身
+        E_PN_WATERQUALITY1,	//水质感器测量点
+        E_PN_HYDROLOGICAL,		//水文传感器测量点
+        E_PN_IMU,				//姿态传感器测量点
+        E_PN_METEOROLOGICAL,   	//气象传感器测量点
+        E_PN_ULTRASONIC,    	//超声传感器测量点
+        E_PN_ULTRASONIC_ARRY,  	//超声波阵列传感器测量点
+        E_PN_MMWAVE,    		//毫米波传感器测量点
+        E_PN_MMWAVE_ARRY,  		//毫米波阵列传感器测量点
+
+        E_PN_POSITION,  		//位置信息GPS OR 北斗测量点
+        E_PN_EXTENSIONARM,		//伸展臂 即清污机构
+        E_PN_ELECTRICALMACHINE,	//电机
+        E_PN_WAREVERSION,		//固件和软件版本
+        E_PN_RGBD,    			//RGB-D测量点
+        E_PN_360CAMERA1,//360全景摄像头2测量点
+        E_PN_360CAMERA3,    	//360全景摄像头3测量点
+        E_PN_360CAMERA4,    	//360全景摄像头4测量点
+        E_PN_MAX;*/
+
+        private byte value;
+        E_Pn(byte val)
+        {
+            this.value = val;
+        }
+
+         E_Pn()
+        {
+
+        }
+
+        public byte getValue() {
+            return value;
+        }
+    }
+
+    public enum E_ConfirmOrDeny
+    {
+        E_CONDENY_CONFIRMALL((byte)1),	//F1 全部确认
+        E_CONDENY_GENERALDENY((byte)2),	//F2 全部否认
+        E_CONDENY_WRDATAUNITERR((byte)3),//F3 写ERRO码到数据单元
+        E_CONDENY_HARDWAREERR((byte)4),	//F4 硬件错误
+        E_CONDENY_RESERVE((byte)5);
+        private byte value;
+        E_ConfirmOrDeny ()
+        {}
+        E_ConfirmOrDeny(byte val)
+        {
+            this.value = val;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+    }
+
+    public enum E_F3ErrNum
+    {
+        E_F3ERR_YES((byte)1),		//正确
+        E_F3ERR_OTHERERR((byte)2),	//其他错误
+        E_F3ERR_TABADDRDUP((byte)3),	//Table address duplication表地址重复
+        E_F3ERR_RESERVE((byte)4);		//3-255备用
+        private byte value;
+        E_F3ErrNum()
+        {}
+        E_F3ErrNum(byte val)
+        {
+            this.value = val;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+    }
+
+    public enum E_F4ErrNum
+    {
+        E_F4ERR_SIGN((byte)1),				//1表示签名校验错误
+        E_F4ERR_CIPHERTEXTCHECK((byte)2),	//2表示密文校验错误 ciphertext checking 密文校验
+        E_F4ERR_MACCHECK((byte)3),			//3表示对称MAC验证失败
+        E_F4ERR_HARDWAREEXCEPTION((byte)4),	//4表示硬件工作异常
+        E_F4ERR_MAX((byte)5);
+        private byte value;
+        E_F4ErrNum()
+        {}
+        E_F4ErrNum(byte val)
+        {
+            this.value = val;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+    }
 }
 
-/*
-* //数据链路检测Fn定义
-typedef enum linkdetection
-{
-	E_LKDETEC_LOGIN=1,	//F1登录
-	E_LKDETEC_LOGOUT,	//F2登出
-	E_LKDETEC_HEARTBEAT,//F3心跳
-	E_LKDETEC_ERR,
-}E_LinkDetection;
-* */
-
-/*
-* typedef enum Application_function_code
-{
-	E_AFC_CONDENY		=0x00,	//1 确认∕否认 Confirm or deny
-	E_AFC_RESET			=0x01,	//2 复位命令 reset
-	E_AFC_LKDT			=0x02,	//3 链路接口检测 Link interface detection
-	E_AFC_RPTSTATION	=0x03,	//4 中继站
-	E_AFC_SETPARAM		=0x04,	//5 设置参数
-	E_AFC_CTLCMD		=0x05,	//6 控制命令
-	E_AFC_IDENTITY		=0x06,	//7 身份认证及密钥协商
-	E_AFC_RESERVE		=0x07,  //8 预留
-	E_AFC_TMLRPT		=0x08,	//9 请求被级联终端主动上报 Terminal active report
-	E_AFC_TMLCFGINFO	=0x09,	//10请求终端配置及信息
-	E_AFC_QUERYPARA		=0x0A,	//11查询参数
-	E_AFC_TASKDATA		=0x0B,  //12请求任务数据
-	E_AFC_RLTDATA		=0x0C,	//13请求1类数据(实时数据,采集的数据)
-	E_AFC_HISDATA		=0x0D,	//14请求2类数据(历史数据,采集的数据)
-	E_AFC_ALARMEVENT	=0x0E,	//15请求3类数据(告警事件)
-	E_AFC_FILETRANSF	=0x0F,	//16文件传输
-	E_AFC_FORWARDATA	=0x10,	//17透明转发
-	E_AFC_MAX			=0xFF,			//
-}E_appFuncCode;
-* */
-
-/*
-* typedef enum  Controlfield_Function_Code
-{
-//slave
-	E_CFC_S_RECOGNITION = 0x00, 	 //0  认可
-	E_CFC_S_USERDATA = 0x08,		 //8  响应帧 用户数据
-	E_CFC_S_DENY = 0x09,			 //9  响应帧 否认：无所召唤的数据
-	E_CFC_S_LINKSTATE = 0x0b,	 //11 响应帧 链路状态
-//master
-	E_CFC_M_RESET = 0x11,				//1  发送∕确认 复位命令
-	E_CFC_M_USERDATA = 0x14, 			//4  发送∕无回答 用户数据
-	E_CFC_M_LINKTEST = 0x19, 			//9  请求∕响应帧 链路测试
-	E_CFC_M_REQ1STDAT = 0x1a, 	//10 请求∕响应帧 请求1级数据
-	E_CFC_M_REQ2NDDAT = 0x1b,	//11 请求∕响应帧 请求2级数据
-}E_ctlFunCode;
-* */

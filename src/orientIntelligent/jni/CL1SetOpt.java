@@ -2,6 +2,8 @@ package orientIntelligent.jni;
 
 import orientIntelligent.jni.DFSLDataType.CEvent;
 import orientIntelligent.jni.DFSLDataType.CS_A16;
+import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
+import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny.*;
 import orientIntelligent.jni.DFSLDataType.CS_addrField;
 
 
@@ -32,7 +34,9 @@ public class CL1SetOpt extends CDFSLProOpt{
      */
     public native void set_ctlFieldC_all(int DFSLProID,Cenumclass.E_transDir dir, boolean reserveOrFCV, boolean ACDorFCB, Cenumclass.E_ctlFunCode cfc);
     public native void set_userData_appFuncCode(int DFSLProID,Cenumclass.E_appFuncCode afc);
-    public native void set_userData_dataUnit_linkDetection_uplink(int DFSLProID,Cenumclass.E_LinkDetection linkDeteNum);
+    //bool (*set_userData_dataUnit_confirmOrDeny)(POptS THIS,uint16 Pn,E_ConfirmOrDeny Fn,U_userdata_confirmOrDeny target);
+    //public native void set_userData_dataUnit_linkDetection_uplink(int DFSLProID,Cenumclass.E_LinkDetection linkDeteNum);
+    public native void set_userData_dataUnit_confirmOrDeny(int DFSLProID,Cenumclass.E_Pn Pn,Cenumclass.E_ConfirmOrDeny Fn,CS_userdata_confirmOrDeny target);
     public native void set_userData_aux(int DFSLProID,byte ec1num_important ,byte ec2num_general,byte current_pfc,byte []password);
     public native void send_buf_server(int DFSLProID);
     void callbackWrite(byte[] bytes){
@@ -93,8 +97,15 @@ public class CL1SetOpt extends CDFSLProOpt{
         Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.E_AFC_LKDT;
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //(4)set_userData_dataUnit_linkDetection_uplink
-        Cenumclass.E_LinkDetection tmpLdt = Cenumclass.E_LinkDetection.E_LKDETEC_LOGIN;
-        tmpL1SetOpt.set_userData_dataUnit_linkDetection_uplink(DFSLProID,tmpLdt);
+
+        //Cenumclass.E_LinkDetection tmpLdt = Cenumclass.E_LinkDetection.E_LKDETEC_LOGIN;
+       //创建内部类方法一
+       // S_userdata_confirmOrDeny_F3 target= new CS_userdata_confirmOrDeny( ).new  S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES);
+       // CS_userdata_confirmOrDeny targetConfirmOrDeny = new CS_userdata_confirmOrDeny( target);
+        //创建内部类方法二
+        CS_userdata_confirmOrDeny targetConfirmOrDeny = new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new  S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
+        System.out.println("Cenumclass.E_Pn.E_PN_WATERQUALITY1:"+Cenumclass.E_Pn.E_PN_WATERQUALITY1.getValue());
+        tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID,Cenumclass.E_Pn.E_PN_360CAMERA1,Cenumclass.E_ConfirmOrDeny.E_CONDENY_WRDATAUNITERR,targetConfirmOrDeny);
         //(5)set_userData_aux
         byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         tmpL1SetOpt.set_userData_aux(DFSLProID,(byte)0x6,(byte)0x6,(byte)0x0,tmpPwd);
