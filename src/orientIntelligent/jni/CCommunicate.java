@@ -129,6 +129,7 @@ public class CCommunicate {
             {
                 case E_CFC_S_RECOGNITION:
                     System.out.println("E_CFC_S_RECOGNITION");
+
                     break;
                 case E_CFC_S_USERDATA:
                     System.out.println("E_CFC_S_USERDATA");
