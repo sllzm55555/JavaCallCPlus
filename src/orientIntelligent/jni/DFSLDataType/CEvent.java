@@ -1,6 +1,6 @@
-package orientIntelligent.jni;
+package orientIntelligent.jni.DFSLDataType;
 
-class CEvent
+public class CEvent
 {
 
     byte importantCount;//重要事件数

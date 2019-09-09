@@ -1,5 +1,10 @@
 package orientIntelligent.jni;
 
+import orientIntelligent.jni.DFSLDataType.CEvent;
+import orientIntelligent.jni.DFSLDataType.CS_A16;
+import orientIntelligent.jni.DFSLDataType.CS_addrField;
+
+
 public class CL1SetOpt extends CDFSLProOpt{
 
     static {
@@ -15,7 +20,7 @@ public class CL1SetOpt extends CDFSLProOpt{
      * @param DFSLProID 协议对象ID
      * @param addrField 传入地址域参数
      */
-    public native void set_addrField(int DFSLProID,CS_addrField addrField);
+    public native void set_addrField(int DFSLProID, CS_addrField addrField);
 
     /**
      *

@@ -1,6 +1,6 @@
-package orientIntelligent.jni;
+package orientIntelligent.jni.DFSLDataType;
 
-class CS_A16// second_XX_XX_XX_XX
+public class CS_A16// second_XX_XX_XX_XX
 {
 
     byte sec_digit  ;	//秒

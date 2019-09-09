@@ -1,4 +1,4 @@
-package orientIntelligent.jni;
+package orientIntelligent.jni.DFSLDataType;
 
 
 
@@ -59,7 +59,7 @@ public class CS_addrField {
     /**
      * 行政区划码
      */
-    class CS_adminZoneCode
+    public class CS_adminZoneCode
     {
         /*
 
@@ -90,7 +90,7 @@ public class CS_addrField {
     /**
      * 机器型号
      */
-    class CS_tmladd
+    public class CS_tmladd
     {
         public CS_tmladd(byte addr_digit,byte addr_decade)
         {
