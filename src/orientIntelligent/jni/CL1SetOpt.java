@@ -61,16 +61,13 @@ public class CL1SetOpt extends CDFSLProOpt{
     {
         System.out.println("hello test in");
     }
-    public static void main(String[] args) {
-        DFSLProL1SetTest();
-    }
 
-    public static void DFSLProL1SetTest()
-    {
+    public static boolean packageLinkDete(Cenumclass.E_ConfirmOrDeny Fn) {
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
+        //step1 注册协议操作集和内存
         int DFSLProID = tmpL1SetOpt.register_DFSLProOptS();
-        //tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
-        //int DFSLProID2 = tmpL1SetOpt.register_DFSLProOptS();
+        //step2 set_addrField
+        //######################################## 设置参数addrField
         System.out.println("DFSLProID:"+DFSLProID);
         byte[] A4_SN = {(byte)0x56,(byte)0x34,(byte)0x12};
         CS_addrField addrField = new CS_addrField();
@@ -80,48 +77,58 @@ public class CL1SetOpt extends CDFSLProOpt{
         addrField.set_adminZoneCode((byte)0,(byte)8,(byte)3,(byte)0);
         addrField.set_tmladd((byte)9,(byte)9);
         addrField.set_A1_countcode((byte)0x86);
-        //new CL1SetOpt().set_addrField(addrField);
-        tmpL1SetOpt.set_addrField(DFSLProID,addrField);
-        //(2)set_ctlFieldC_all
-        //step1 set E_transDir
+        tmpL1SetOpt.set_addrField(DFSLProID,addrField);//设置到内存
+        //step3 set_ctlFieldC_all
+        //########################################设置参数
         Cenumclass.E_transDir tmpDir = Cenumclass.E_transDir.E_TD_SVR_ANSWER;
-        //step2 set E_ctlFunCode
         Cenumclass.E_ctlFunCode tmpcfc= Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
-        //step3 set FCV FCB
         boolean fcvBit = true;
         boolean fcbBit = true;
-        //step4 call set_ctlFieldC_all
-        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID,Cenumclass.E_transDir.E_TD_SVR_REQUEST,
-                fcvBit,fcbBit, Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);
-        //(3)set_userData_appFuncCode
+        //########################################
+        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, Cenumclass.E_transDir.E_TD_SVR_ANSWER,
+                fcvBit,fcbBit, Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);//设置到内存
+        //step4 set_userData_appFuncCode
+        //########################################设置参数
         Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.E_AFC_LKDT;
+        //########################################
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
-        //(4)set_userData_dataUnit_linkDetection_uplink
+        //step5 设置数据单元:CS_userdata_confirmOrDeny
+        CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
+        switch (Fn)
+        {
+            case E_CONDENY_CONFIRMALL://F1 全部确认 数据区为空
 
-        //Cenumclass.E_LinkDetection tmpLdt = Cenumclass.E_LinkDetection.E_LKDETEC_LOGIN;
-       //创建内部类方法一
-       // S_userdata_confirmOrDeny_F3 target= new CS_userdata_confirmOrDeny( ).new  S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES);
-       // CS_userdata_confirmOrDeny targetConfirmOrDeny = new CS_userdata_confirmOrDeny( target);
-        //创建内部类方法二
-        //F3
-        CS_userdata_confirmOrDeny targetConfirmOrDenyF3 = new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new  S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
-        //F4
-        byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-        CS_userdata_confirmOrDeny targetConfirmOrDenyF4 = new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new  S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
-        //System.out.println("targetConfirmOrDeny.F3:"+targetConfirmOrDenyF3.getF3().getF3errNum().getValue());
-        //System.out.println("targetConfirmOrDeny.F4:"+targetConfirmOrDenyF4.getF4().getF4errNum().getValue());
-        boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID,Cenumclass.E_Pn.E_PN_360CAMERA1,Cenumclass.E_ConfirmOrDeny.E_CONDENY_HARDWAREERR,targetConfirmOrDenyF4);
+                break;
+            case E_CONDENY_GENERALDENY://F2 全部否认 数据区为空
+                break;
+            case E_CONDENY_WRDATAUNITERR://F3 数据区带F3错误码
+                //F3
+                targetConfirmOrDeny =
+                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
+                break;
+            case E_CONDENY_HARDWAREERR: //F4 硬件错误
+                byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+                //########################################
+                targetConfirmOrDeny =
+                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
+                break;
+        }
+        boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_360CAMERA1, Cenumclass.E_ConfirmOrDeny.E_CONDENY_HARDWAREERR,targetConfirmOrDeny);
         if(retSet == false)
         {
             tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
-            return;
+            return false;
         }
-        //(5)set_userData_aux
+        //step6 set_userData_aux 设置附加信息
+        //########################################设置参数
         byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        //########################################
         tmpL1SetOpt.set_userData_aux(DFSLProID,(byte)0x6,(byte)0x6,(byte)0x0,tmpPwd);
+        //step6 send_buf_server 写数据到客户端
         tmpL1SetOpt.send_buf_server(DFSLProID);
+        //step8 注销
         tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
-
+        return true;
     }
 
 
