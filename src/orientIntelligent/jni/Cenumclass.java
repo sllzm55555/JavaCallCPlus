@@ -5,7 +5,7 @@ public class Cenumclass {
     {
 
     }*/
-    enum E_CheckPackage{
+    public enum E_CheckPackage{
         E_CKPKG_FRAMEERR((byte)1),	//帧错误   ，不能解析数据区
         E_CKPKG_CONTINUE((byte)2),	//有后续帧	，还需要接收完后续帧才能解析数据区
         E_CKPKG_SUCCESS((byte)3),	//可以进行数据区的解析
@@ -106,7 +106,7 @@ public class Cenumclass {
         }
     }
 
-    enum E_appFuncCode{
+    public enum E_appFuncCode{
         E_AFC_CONDENY		((byte)0x00),	//1 确认∕否认 Confirm or deny
         E_AFC_RESET			((byte)0x01),	//2 复位命令 reset
         E_AFC_LKDT			((byte)0x02),	//3 链路接口检测 Link interface detection
@@ -286,6 +286,35 @@ public class Cenumclass {
         {}
         E_F4ErrNum(byte val)
         {
+            this.value = val;
+        }
+
+        public byte getValue() {
+            return value;
+        }
+    }
+
+    public enum SerializableField{
+        /**
+         * 多帧：中间帧
+         */
+        mutiple_middle((byte)0),
+        /**
+         * 多帧：结束帧
+         */
+        mutiple_start((byte)1),
+        /**
+         * 多帧：第1帧，有后续帧。
+         */
+        mutiple_end((byte)2),
+        /**
+         * 单帧
+         */
+        single((byte)3);
+
+        private byte value;
+        SerializableField(){}
+        SerializableField(byte val){
             this.value = val;
         }
 
