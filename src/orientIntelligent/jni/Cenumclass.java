@@ -294,7 +294,7 @@ public class Cenumclass {
         }
     }
 
-    public enum SerializableField{
+    public enum CurrentFramePosition {
         /**
          * 多帧：中间帧
          */
@@ -313,8 +313,8 @@ public class Cenumclass {
         single((byte)3);
 
         private byte value;
-        SerializableField(){}
-        SerializableField(byte val){
+        CurrentFramePosition(){}
+        CurrentFramePosition(byte val){
             this.value = val;
         }
 

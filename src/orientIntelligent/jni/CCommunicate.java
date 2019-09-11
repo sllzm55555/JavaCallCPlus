@@ -1,5 +1,6 @@
 package orientIntelligent.jni;
 
+import orientIntelligent.entity.*;
 import orientIntelligent.jni.DFSLDataType.CEvent;
 import orientIntelligent.jni.DFSLDataType.CS_A1;
 import orientIntelligent.jni.DFSLDataType.CS_A16;
@@ -20,8 +21,14 @@ public class CCommunicate {
     static {
 
         // System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
+        //本地路径
+        //System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
+        //VS路径
+        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
     }
+
+    public   native  CommunicationProtocol parse_message(byte[] bytes);
+
     public void parse_msg_server(byte bytes[])
     {
         boolean ret_PW  = true;
@@ -172,8 +179,8 @@ public class CCommunicate {
         byte[] recvFram = null;
         int lenRecvFram;
         int port = 9998;
-        //ServerSocket server = new ServerSocket(port);
-        try {
+
+/*        try {
             //创建绑定到特定端口的服务器套接字  1-65535
             ServerSocket serversocket = new ServerSocket(port);
             while(true) {
@@ -196,14 +203,6 @@ public class CCommunicate {
                         recvFram[i]=bytes[i];
                     }
                 }
-//                StringBuilder sb = new StringBuilder();
-//                while ((len = inputStream.read(bytes)) != -1) {
-//                    //注意指定编码格式，发送方和接收方一定要统一，建议使用UTF-8
-//                    sb.append(new String(bytes, 0, len,"UTF-8"));
-//
-//                    System.out.println("len:"+len);
-//                }
-//                System.out.println("get message from client: " + sb);
                 inputStream.close();
                 socket.close();
                 serversocket.close();
@@ -211,13 +210,25 @@ public class CCommunicate {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 
         CCommunicate com =  new CCommunicate();
-        if(recvFram!=null)
-        com.parse_msg_server(recvFram);
+        if(hearbeat!=null) {
+            //com.parse_msg_server(recvFram);
+            CommunicationProtocol parseMessage = com.parse_message(hearbeat);
+            if (parseMessage != null) {
+                System.out.println("parseMessage getMessage:"+parseMessage.getMessage());
+                System.out.println("parseMessage getStatus:"+parseMessage.getStatus());
+                System.out.println("parseMessage getLength:"+parseMessage.getProtocolContent().getLength());
+                System.out.println("parseMessage getCheckSum:"+parseMessage.getProtocolContent().getCheckSum());
+            }
+        }
+        else
+        {
+            System.out.println("parseMessage is empty");
+        }
     }
 
     public int parse_linkdt_dataUnit_server(CL1GetOpt tmpL1GetOpt,int DFSLProID)

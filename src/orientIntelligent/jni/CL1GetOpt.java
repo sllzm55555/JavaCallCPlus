@@ -16,6 +16,12 @@ public class CL1GetOpt extends CDFSLProOpt {
     public native Cenumclass.E_transDir get_ctlField_DIR(int DFSLProID);                //获取帧传输方向
     public native Cenumclass.E_appFuncCode get_userData_appFuncCode(int DFSLProID);     //获取应用层功能码
 
+    public native int    get_userData_dataUnit_size	(int DFSLProID);
+    public native int    get_userData_dataUnit_offset(int DFSLProID);
+   // public native void   freeBufRecv					(int DFSLProID);
+    public native short get_userData_DT			(int DFSLProID);
+    public native short get_userData_DA			(int DFSLProID);
+
     //用户数据区解析代码
     public native Cenumclass.E_LinkDetection get_userData_dataUnit_linkDetection_uplink(int DFSLProID,CS_A1 hearbeat);
 

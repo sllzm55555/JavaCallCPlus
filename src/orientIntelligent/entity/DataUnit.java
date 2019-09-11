@@ -9,15 +9,18 @@ public class DataUnit {
 
     private int fn;
     private int pn;
-    private byte[] data;
+    /**
+     * 1991年1月1日 20:10:10
+     */
+    private String heartBeat;
 
     public DataUnit() {
     }
 
-    public DataUnit(int fn, int pn, byte[] data) {
+    public DataUnit(int fn, int pn, String heartBeat) {
         this.fn = fn;
         this.pn = pn;
-        this.data = data;
+        this.heartBeat = heartBeat;
     }
 
     public int getFn() {
@@ -36,11 +39,11 @@ public class DataUnit {
         this.pn = pn;
     }
 
-    public byte[] getData() {
-        return data;
+    public String getHeartBeat() {
+        return heartBeat;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setHeartBeat(String heartBeat) {
+        this.heartBeat = heartBeat;
     }
 }

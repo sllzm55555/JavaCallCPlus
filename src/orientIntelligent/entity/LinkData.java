@@ -19,7 +19,7 @@ public class LinkData {
     /**
      * 序列域
      */
-    private Cenumclass.SerializableField serializableField;
+    private SerializableField serializableField;
     /**
      * 数据单元
      */
@@ -28,7 +28,7 @@ public class LinkData {
     public LinkData() {
     }
 
-    public LinkData(Cenumclass.E_appFuncCode applicationFunctionCode, Cenumclass.SerializableField serializableField, List<DataUnit> dataUnitList) {
+    public LinkData(Cenumclass.E_appFuncCode applicationFunctionCode, SerializableField serializableField, List<DataUnit> dataUnitList) {
         this.applicationFunctionCode = applicationFunctionCode;
         this.serializableField = serializableField;
         this.dataUnitList = dataUnitList;
@@ -42,11 +42,11 @@ public class LinkData {
         this.applicationFunctionCode = applicationFunctionCode;
     }
 
-    public Cenumclass.SerializableField getSerializableField() {
+    public SerializableField getSerializableField() {
         return serializableField;
     }
 
-    public void setSerializableField(Cenumclass.SerializableField serializableField) {
+    public void setSerializableField(SerializableField serializableField) {
         this.serializableField = serializableField;
     }
 

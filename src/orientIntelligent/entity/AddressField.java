@@ -21,12 +21,12 @@ public class AddressField {
     /**
      * 序列号
      */
-    private int serializeCode;
+    private byte[] serializeCode;
 
     public AddressField() {
     }
 
-    public AddressField(int countryCode, int zoneCode, int robotCode, int serializeCode) {
+    public AddressField(int countryCode, int zoneCode, int robotCode, byte[] serializeCode) {
         this.countryCode = countryCode;
         this.zoneCode = zoneCode;
         this.robotCode = robotCode;
@@ -57,11 +57,11 @@ public class AddressField {
         this.robotCode = robotCode;
     }
 
-    public int getSerializeCode() {
+    public byte[] getSerializeCode() {
         return serializeCode;
     }
 
-    public void setSerializeCode(int serializeCode) {
+    public void setSerializeCode(byte[] serializeCode) {
         this.serializeCode = serializeCode;
     }
 }
