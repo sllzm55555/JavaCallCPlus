@@ -7,9 +7,19 @@ package orientIntelligent.entity;
  */
 public class ControlField {
 
-    /**
-     * 上行
-     */
+    private UpLink  up;
+
+    public ControlField(UpLink up) {
+        this.up = up;
+    }
+
+    public ControlField() {
+    }
+
+    public UpLink getUp() {
+        return up;
+    }
+
     public class UpLink {
         private int dir;
         private int prm;
@@ -26,6 +36,11 @@ public class ControlField {
         }
 
         public UpLink() {
+        }
+
+        public void SetUp()
+        {
+            up = this;
         }
 
         public int getDir() {

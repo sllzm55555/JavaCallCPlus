@@ -9,59 +9,43 @@ public class AddressField {
     /**
      * 国家代码
      */
-    private int countryCode;
+    private String countryCode;
     /**
      * 新政区划码
      */
-    private int zoneCode;
+    private String zoneCode;
     /**
      * 机器型号
      */
-    private int robotCode;
+    private String robotCode;
     /**
      * 序列号
      */
-    private byte[] serializeCode;
+    private String serializeCode;
 
     public AddressField() {
     }
 
-    public AddressField(int countryCode, int zoneCode, int robotCode, byte[] serializeCode) {
+    public AddressField(String countryCode, String zoneCode, String robotCode, String serializeCode) {
         this.countryCode = countryCode;
         this.zoneCode = zoneCode;
         this.robotCode = robotCode;
         this.serializeCode = serializeCode;
     }
 
-    public int getCountryCode() {
+    public String getCountryCode() {
         return countryCode;
     }
 
-    public void setCountryCode(int countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public int getZoneCode() {
+    public String getZoneCode() {
         return zoneCode;
     }
 
-    public void setZoneCode(int zoneCode) {
-        this.zoneCode = zoneCode;
-    }
-
-    public int getRobotCode() {
+    public String getRobotCode() {
         return robotCode;
     }
 
-    public void setRobotCode(int robotCode) {
-        this.robotCode = robotCode;
-    }
-
-    public byte[] getSerializeCode() {
+    public String getSerializeCode() {
         return serializeCode;
-    }
-
-    public void setSerializeCode(byte[] serializeCode) {
-        this.serializeCode = serializeCode;
     }
 }

@@ -13,6 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import java.io.IOException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class CCommunicate {
@@ -223,6 +224,44 @@ public class CCommunicate {
                 System.out.println("parseMessage getStatus:"+parseMessage.getStatus());
                 System.out.println("parseMessage getLength:"+parseMessage.getProtocolContent().getLength());
                 System.out.println("parseMessage getCheckSum:"+parseMessage.getProtocolContent().getCheckSum());
+
+                //AddressField
+                System.out.println("parseMessage CountryCode:"+parseMessage.getProtocolContent().getAddressField().getCountryCode());
+                System.out.println("parseMessage RobotCode:"+parseMessage.getProtocolContent().getAddressField().getRobotCode());
+                System.out.println("parseMessage ZoneCode:"+parseMessage.getProtocolContent().getAddressField().getZoneCode());
+                System.out.println("parseMessage SN:"+parseMessage.getProtocolContent().getAddressField().getSerializeCode());
+
+                //ControlField
+                ControlField.UpLink up = parseMessage.getProtocolContent().getControlField().getUp();
+
+                //up.getUp()
+                //ControlField.UpLink up = cf.new UpLink(1,2,3,4,6);
+                System.out.println("parseMessage ControlField getReserve:"+up.getReserve());
+                System.out.println("parseMessage ControlField ACD:"+up.getAcd());
+                System.out.println("parseMessage ControlField Dir:"+up.getDir());
+                System.out.println("parseMessage ControlField Prm:"+up.getPrm());
+                System.out.println("parseMessage ControlField FunctionCode:"+up.getFunctionCode());
+
+
+                System.out.println("->246:");
+                //List<DataUnit> DataUnitList = parseMessage.getProtocolContent().getLinkData();
+                LinkData DataUnitList = parseMessage.getProtocolContent().getLinkData();
+               // System.out.println("ApplicationFunctionCode:"+DataUnitList.getApplicationFunctionCode().name());
+                System.out.println("->250:");
+                DataUnit dataUnit = DataUnitList.getDataUnitList().get(0);
+                System.out.println("->252:");
+                System.out.println("->243:");
+
+                if(DataUnitList==null)
+                {
+                    System.out.println("DataUnitList is empty:");
+                }
+//                int DataUnitListLen = DataUnitList.size();
+//                System.out.println("DataUnitListLen:"+DataUnitListLen);
+//                System.out.println("parseMessage DataUnitList size:"+parseMessage.getProtocolContent().getLinkData().getDataUnitList().size());
+//                System.out.println("parseMessage HeartBeat:"+parseMessage.getProtocolContent().getLinkData().getDataUnitList().get(0).getHeartBeat().toString());
+
+                //parseMessage.getProtocolContent().getCheckSum();
             }
         }
         else

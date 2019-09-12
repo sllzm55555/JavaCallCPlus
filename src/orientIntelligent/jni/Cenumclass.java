@@ -230,6 +230,20 @@ public class Cenumclass {
 
         }
 
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_Pn e : Cenumclass.E_Pn.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
+
         public byte getValue() {
             return value;
         }
@@ -253,6 +267,20 @@ public class Cenumclass {
         public byte getValue() {
             return value;
         }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_ConfirmOrDeny e : Cenumclass.E_ConfirmOrDeny.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
     }
 
     public enum E_F3ErrNum
@@ -271,6 +299,19 @@ public class Cenumclass {
 
         public byte getValue() {
             return value;
+        }
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_F3ErrNum e : Cenumclass.E_F3ErrNum.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
         }
     }
 
@@ -291,6 +332,19 @@ public class Cenumclass {
 
         public byte getValue() {
             return value;
+        }
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.E_F4ErrNum e : Cenumclass.E_F4ErrNum.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
         }
     }
 
@@ -320,6 +374,20 @@ public class Cenumclass {
 
         public byte getValue() {
             return value;
+        }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (Cenumclass.CurrentFramePosition e : Cenumclass.CurrentFramePosition.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
         }
     }
 }
