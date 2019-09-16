@@ -29,6 +29,7 @@ public class LinkData {
     }
 
     public LinkData(Cenumclass.E_appFuncCode applicationFunctionCode, SerializableField serializableField, List<DataUnit> dataUnitList) {
+
         this.applicationFunctionCode = applicationFunctionCode;
         this.serializableField = serializableField;
         this.dataUnitList = dataUnitList;

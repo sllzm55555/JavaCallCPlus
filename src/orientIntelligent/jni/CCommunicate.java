@@ -13,6 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -24,7 +25,7 @@ public class CCommunicate {
         // System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
         //本地路径
         //System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        //VS路径
+        //VS路径  E:\VS\DFSLProDemo\x64\Debug
         System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
     }
 
@@ -217,8 +218,11 @@ public class CCommunicate {
 
         CCommunicate com =  new CCommunicate();
         if(hearbeat!=null) {
+
             //com.parse_msg_server(recvFram);
+            System.out.println("->DEBUG:");
             CommunicationProtocol parseMessage = com.parse_message(hearbeat);
+            System.out.println("->DEBUG:");
             if (parseMessage != null) {
                 System.out.println("parseMessage getMessage:"+parseMessage.getMessage());
                 System.out.println("parseMessage getStatus:"+parseMessage.getStatus());
@@ -242,26 +246,16 @@ public class CCommunicate {
                 System.out.println("parseMessage ControlField Prm:"+up.getPrm());
                 System.out.println("parseMessage ControlField FunctionCode:"+up.getFunctionCode());
 
+                List<DataUnit> dataUnitList = parseMessage.getProtocolContent().getLinkData().getDataUnitList();
 
-                System.out.println("->246:");
-                //List<DataUnit> DataUnitList = parseMessage.getProtocolContent().getLinkData();
-                LinkData DataUnitList = parseMessage.getProtocolContent().getLinkData();
-               // System.out.println("ApplicationFunctionCode:"+DataUnitList.getApplicationFunctionCode().name());
-                System.out.println("->250:");
-                DataUnit dataUnit = DataUnitList.getDataUnitList().get(0);
-                System.out.println("->252:");
-                System.out.println("->243:");
+                System.out.println("getHeartBeat:"+dataUnitList.get(0).getHeartBeat().toString());
+                System.out.println("getFn:"+dataUnitList.get(0).getFn());
+                System.out.println("getPn:"+dataUnitList.get(0).getPn());
 
-                if(DataUnitList==null)
+                if(dataUnitList==null)
                 {
-                    System.out.println("DataUnitList is empty:");
+                    System.out.println("dataUnitList is empty:");
                 }
-//                int DataUnitListLen = DataUnitList.size();
-//                System.out.println("DataUnitListLen:"+DataUnitListLen);
-//                System.out.println("parseMessage DataUnitList size:"+parseMessage.getProtocolContent().getLinkData().getDataUnitList().size());
-//                System.out.println("parseMessage HeartBeat:"+parseMessage.getProtocolContent().getLinkData().getDataUnitList().get(0).getHeartBeat().toString());
-
-                //parseMessage.getProtocolContent().getCheckSum();
             }
         }
         else
@@ -272,7 +266,6 @@ public class CCommunicate {
 
     public int parse_linkdt_dataUnit_server(CL1GetOpt tmpL1GetOpt,int DFSLProID)
     {
-       // CS_A1 tmp_A1 = new CS_A1();
         CS_A1 tmp_A1 = new CS_A1();
         Cenumclass.E_appFuncCode appFuncCode = tmpL1GetOpt.get_userData_appFuncCode(DFSLProID);
         System.out.println("appFuncCode:"+appFuncCode.name());

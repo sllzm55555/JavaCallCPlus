@@ -18,6 +18,7 @@ public class DataUnit {
     }
 
     public DataUnit(int fn, int pn, String heartBeat) {
+        super();
         this.fn = fn;
         this.pn = pn;
         this.heartBeat = heartBeat;
