@@ -1,9 +1,5 @@
 package orientIntelligent.entity;
 
-import orientIntelligent.jni.Cenumclass;
-import orientIntelligent.jni.jni_enum.AdminZoneCode;
-import orientIntelligent.jni.jni_enum.CountyCode;
-
 /**
  * @author wt
  * @version 1.0.0
