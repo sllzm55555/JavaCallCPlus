@@ -49,6 +49,17 @@ public class Cenumclass {
         {
             this.value = val;
         }
+
+        public static E_transDir getTransDirCodeByName(String name){
+            E_transDir[] values = E_transDir.values();
+            for (E_transDir code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
@@ -68,7 +79,7 @@ public class Cenumclass {
         }
     }
 
-     enum E_ctlFunCode
+    public enum E_ctlFunCode
     {
         //slave 回复
         E_CFC_S_RECOGNITION((byte)0x0), //用于确认回复
@@ -87,6 +98,17 @@ public class Cenumclass {
         {
             this.value = val;
         }
+
+        public static E_ctlFunCode getCtlFunCodeCodeByName(String name){
+            E_ctlFunCode[] values = E_ctlFunCode.values();
+            for (E_ctlFunCode code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
@@ -130,6 +152,17 @@ public class Cenumclass {
         {
             this.value = val;
         }
+
+        public static E_appFuncCode getAppFuncCodeByName(String name){
+            E_appFuncCode[] values = E_appFuncCode.values();
+            for (E_appFuncCode code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";

@@ -20,6 +20,17 @@ public enum AdminZoneCode {
         this.zoneName = name;
         this.value = value;
     }
+
+    public AdminZoneCode getAdminZoneCodeByName(String name){
+        AdminZoneCode[] values = AdminZoneCode.values();
+        for (AdminZoneCode code : values) {
+            if(name.equals(code.key())){
+                return code;
+            }
+        }
+        return null;
+    }
+
     public String key(){
         return this.zoneName;
     }
@@ -28,7 +39,7 @@ public enum AdminZoneCode {
         return this.value;
     }
 
-    public int getValueByName(String name){
+    public static int getValueByName(String name){
         AdminZoneCode[] values = AdminZoneCode.values();
         for (AdminZoneCode code : values) {
             if(name.equals(code.key())){

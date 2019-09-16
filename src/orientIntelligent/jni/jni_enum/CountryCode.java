@@ -29,7 +29,17 @@ public enum CountryCode {
         return this.value;
     }
 
-    public byte getValueByName(String name){
+    public CountryCode getCountryCodeByName(String name){
+        CountryCode[] values = CountryCode.values();
+        for (CountryCode code : values) {
+            if(name.equals(code.key())){
+                return code;
+            }
+        }
+        return null;
+    }
+
+    public static byte getValueByName(String name){
         CountryCode[] values = CountryCode.values();
         for (CountryCode countryCode : values) {
             if(name.equals(countryCode.key())){

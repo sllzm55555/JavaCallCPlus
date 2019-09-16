@@ -38,6 +38,7 @@ public class CL1SetOpt extends CDFSLProOpt{
     public native boolean set_userData_dataUnit_confirmOrDeny(int DFSLProID,Cenumclass.E_Pn Pn,Cenumclass.E_ConfirmOrDeny Fn,CS_userdata_confirmOrDeny target);
     public native void set_userData_aux(int DFSLProID,byte ec1num_important ,byte ec2num_general,byte current_pfc,byte []password);
     public native void send_buf_server(int DFSLProID);
+    public native byte[] serializeToBuf(int DFSLProID);
     void callbackWrite(byte[] bytes){
         /*
         try {
