@@ -35,7 +35,7 @@ public class Cenumclass {
         }
     }
 
-    enum E_transDir {
+    public enum E_transDir {
         //E_downlink_QT2ROBOT=0,
         //E_uplink_ROBOT2QT  =1,
         //[DIR:PRM]

@@ -84,8 +84,7 @@ public class CL1SetOpt extends CDFSLProOpt{
         boolean fcvBit = true;
         boolean fcbBit = true;
         //########################################
-        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, Cenumclass.E_transDir.E_TD_SVR_ANSWER,
-                fcvBit,fcbBit, Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);//设置到内存
+        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, tmpcfc);//设置到内存
         //step4 set_userData_appFuncCode
         //########################################设置参数
         Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.E_AFC_LKDT;
