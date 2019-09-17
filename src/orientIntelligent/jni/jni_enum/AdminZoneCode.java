@@ -21,7 +21,7 @@ public enum AdminZoneCode {
         this.value = value;
     }
 
-    public AdminZoneCode getAdminZoneCodeByName(String name){
+    public AdminZoneCode getEnumByName(String name){
         AdminZoneCode[] values = AdminZoneCode.values();
         for (AdminZoneCode code : values) {
             if(name.equals(code.key())){

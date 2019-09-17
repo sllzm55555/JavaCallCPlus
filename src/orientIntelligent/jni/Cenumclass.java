@@ -17,10 +17,20 @@ public class Cenumclass {
             this.value = val;
         }
 
+        public static E_CheckPackage getEnumByName(String name){
+            E_CheckPackage[] values = E_CheckPackage.values();
+            for (E_CheckPackage code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_CheckPackage e : Cenumclass.E_CheckPackage.values()) {
+            for (E_CheckPackage e : E_CheckPackage.values()) {
                // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -99,7 +109,7 @@ public class Cenumclass {
             this.value = val;
         }
 
-        public static E_ctlFunCode getCtlFunCodeCodeByName(String name){
+        public static E_ctlFunCode getEnumCodeByName(String name){
             E_ctlFunCode[] values = E_ctlFunCode.values();
             for (E_ctlFunCode code : values) {
                 if(name.equals(code.name())){
@@ -112,7 +122,7 @@ public class Cenumclass {
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_ctlFunCode e : Cenumclass.E_ctlFunCode.values()) {
+            for (E_ctlFunCode e : E_ctlFunCode.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -153,7 +163,7 @@ public class Cenumclass {
             this.value = val;
         }
 
-        public static E_appFuncCode getAppFuncCodeByName(String name){
+        public static E_appFuncCode getEnumByName(String name){
             E_appFuncCode[] values = E_appFuncCode.values();
             for (E_appFuncCode code : values) {
                 if(name.equals(code.name())){
@@ -166,7 +176,7 @@ public class Cenumclass {
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_appFuncCode e : Cenumclass.E_appFuncCode.values()) {
+            for (E_appFuncCode e : E_appFuncCode.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -192,10 +202,21 @@ public class Cenumclass {
         {
             this.value = val;
         }
+
+        public static E_LinkDetection getEnumByName(String name){
+            E_LinkDetection[] values = E_LinkDetection.values();
+            for (E_LinkDetection code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_LinkDetection e : Cenumclass.E_LinkDetection.values()) {
+            for (E_LinkDetection e : E_LinkDetection.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -210,10 +231,10 @@ public class Cenumclass {
         }
     }
 
-     enum E_Pn
+     public enum E_Pn
     {
         E_PN_TERMAL((byte)0x00),			//表示终端本身
-        E_PN_WATERQUALITY1((byte)0x01),	//水质感器测量点
+        E_PN_WATERQUALITY1((byte)0x01),	    //水质感器测量点
         E_PN_HYDROLOGICAL((byte)0x02),		//水文传感器测量点
         E_PN_IMU((byte)0x03),				//姿态传感器测量点
         E_PN_METEOROLOGICAL((byte)0x04),   	//气象传感器测量点
@@ -233,7 +254,7 @@ public class Cenumclass {
         E_PN_MAX((byte)0x12);
 
         /*E_PN_TERMAL((byte)0x00),			//表示终端本身
-        E_PN_WATERQUALITY1,	//水质感器测量点
+        E_PN_WATERQUALITY1,	    //水质感器测量点
         E_PN_HYDROLOGICAL,		//水文传感器测量点
         E_PN_IMU,				//姿态传感器测量点
         E_PN_METEOROLOGICAL,   	//气象传感器测量点
@@ -247,7 +268,7 @@ public class Cenumclass {
         E_PN_ELECTRICALMACHINE,	//电机
         E_PN_WAREVERSION,		//固件和软件版本
         E_PN_RGBD,    			//RGB-D测量点
-        E_PN_360CAMERA1,//360全景摄像头2测量点
+        E_PN_360CAMERA1,        //360全景摄像头2测量点
         E_PN_360CAMERA3,    	//360全景摄像头3测量点
         E_PN_360CAMERA4,    	//360全景摄像头4测量点
         E_PN_MAX;*/
@@ -263,10 +284,20 @@ public class Cenumclass {
 
         }
 
+        public static E_Pn getEnumByName(String name){
+            E_Pn[] values = E_Pn.values();
+            for (E_Pn code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_Pn e : Cenumclass.E_Pn.values()) {
+            for (E_Pn e : E_Pn.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -301,10 +332,20 @@ public class Cenumclass {
             return value;
         }
 
+        public static E_ConfirmOrDeny getEnumByName(String name){
+            E_ConfirmOrDeny[] values = E_ConfirmOrDeny.values();
+            for (E_ConfirmOrDeny code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_ConfirmOrDeny e : Cenumclass.E_ConfirmOrDeny.values()) {
+            for (E_ConfirmOrDeny e : E_ConfirmOrDeny.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -333,10 +374,21 @@ public class Cenumclass {
         public byte getValue() {
             return value;
         }
+
+        public static E_F3ErrNum getEnumByName(String name){
+            E_F3ErrNum[] values = E_F3ErrNum.values();
+            for (E_F3ErrNum code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_F3ErrNum e : Cenumclass.E_F3ErrNum.values()) {
+            for (E_F3ErrNum e : E_F3ErrNum.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -366,10 +418,21 @@ public class Cenumclass {
         public byte getValue() {
             return value;
         }
+
+        public static E_F4ErrNum getEnumByName(String name){
+            E_F4ErrNum[] values = E_F4ErrNum.values();
+            for (E_F4ErrNum code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.E_F4ErrNum e : Cenumclass.E_F4ErrNum.values()) {
+            for (E_F4ErrNum e : E_F4ErrNum.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
@@ -409,10 +472,20 @@ public class Cenumclass {
             return value;
         }
 
+        public static CurrentFramePosition getEnumByName(String name){
+            CurrentFramePosition[] values = CurrentFramePosition.values();
+            for (CurrentFramePosition code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (Cenumclass.CurrentFramePosition e : Cenumclass.CurrentFramePosition.values()) {
+            for (CurrentFramePosition e : CurrentFramePosition.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {

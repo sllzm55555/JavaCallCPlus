@@ -4,6 +4,7 @@ import orientIntelligent.entity.PackageEntity;
 import orientIntelligent.jni.CL1SetOpt;
 import orientIntelligent.jni.Cenumclass;
 import orientIntelligent.jni.DFSLDataType.CS_addrField;
+import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
 import orientIntelligent.jni.jni_enum.AdminZoneCode;
 import orientIntelligent.jni.jni_enum.CountryCode;
 
@@ -15,6 +16,37 @@ import orientIntelligent.jni.jni_enum.CountryCode;
 public class PackageUtils {
 
 
+    public static void main(String[] args) {
+
+
+        PackageEntity packageEntity = new PackageEntity();
+        /*地址域
+        序列号 行政区划码 机器型号 国家代码
+        */
+        packageEntity.setAdminZoneCode("成都");//行政区划码
+        packageEntity.setCountyCode("中国");//国家代码
+        packageEntity.setSerializableCode("123456");//序列号
+        packageEntity.setRobotModelCode(99);//机器型号
+
+        /*控制域
+        帧传输方向,帧计数位,帧有效位, 链路层功能码
+        帧计数位 帧有效位 链路层功能码 暂未设置
+        */
+        packageEntity.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());//帧传输方向
+
+        /*
+        应用层功能码
+         */
+        packageEntity.setRequestType(Cenumclass.E_appFuncCode.E_AFC_LKDT.name());
+
+        /*
+        设置数据单元
+         */
+        packageEntity.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
+
+        PackageUtils packageUtils = new PackageUtils();
+        packageUtils.packageData(packageEntity);
+    }
     public byte[] packageData(PackageEntity packageEntity){
 
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
@@ -43,32 +75,50 @@ public class PackageUtils {
         //byte tmpcfc = 0;
         boolean fcvBit = true;
         boolean fcbBit = true;
-
+        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
         tmpDir = Cenumclass.E_transDir.getTransDirCodeByName(direction);
-//        if(direction.equals(Cenumclass.E_transDir.E_TD_SVR_REQUEST.name())){
-//            tmpDir = Cenumclass.E_transDir.E_TD_SVR_REQUEST;
-//        }
-//        if(direction.equals(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name())){
-//            tmpDir = Cenumclass.E_transDir.E_TD_SVR_ANSWER;
-//        }
 
-        Cenumclass.E_ctlFunCode tmpcfc = Cenumclass.E_ctlFunCode.getCtlFunCodeCodeByName(direction);
-//        if(direction.equals(Cenumclass.E_ctlFunCode..name())){
-//            tmpDir = Cenumclass.E_transDir.E_TD_SVR_REQUEST;
-//        }
-        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, tmpcfc);//设置到内存
+        //Cenumclass.E_ctlFunCode tmpcfc = Cenumclass.E_ctlFunCode.getEnumCodeByName(direction);
+
+        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, cfc);//设置到内存
         //应用层功能码
-        Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.getAppFuncCodeByName(packageEntity.getRequestType());
+        Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.getEnumByName(packageEntity.getRequestType());
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //设置数据单元
+        String isConfirm = packageEntity.getIsConfirm();
 
-        //设置附加信息
-        byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-
-        byte importantEventCount = (byte)0x6;//重要事件
-
-        byte generalEventCount = (byte)0x6;//一般事件
-
+        CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
+        Cenumclass.E_ConfirmOrDeny Fn = Cenumclass.E_ConfirmOrDeny.getEnumByName(isConfirm);
+        switch (Fn)
+        {
+            case E_CONDENY_CONFIRMALL://F1 全部确认 数据区为空
+                break;
+            case E_CONDENY_GENERALDENY://F2 全部否认 数据区为空
+                break;
+            case E_CONDENY_WRDATAUNITERR://F3 数据区带F3错误码
+                //F3
+                targetConfirmOrDeny =
+                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
+                break;
+            case E_CONDENY_HARDWAREERR: //F4 硬件错误
+                byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+                //########################################
+                targetConfirmOrDeny =
+                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
+                break;
+        }
+        boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_TERMAL, Fn,targetConfirmOrDeny);
+        if(retSet == false)
+        {
+            tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
+            return null;
+        }
+        /*设置附加信息
+        重要事件计数器 一般事件计数器  启动帧计数器 消息认证码
+         */
+        byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//消息认证码
+        byte importantEventCount = (byte)0x6;//重要事件计数器
+        byte generalEventCount = (byte)0x6;//一般事件计数器
         byte pfc = (byte)0x0;//启动帧计数器
         tmpL1SetOpt.set_userData_aux(DFSLProID,importantEventCount,generalEventCount,pfc,tmpPwd);
         //获取帧数据
@@ -76,6 +126,14 @@ public class PackageUtils {
         //注销
         tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
 
+        if(null!=sendBuf)
+        {
+            for (byte sb: sendBuf
+                 ) {
+              System.out.print(" "+(int)sb);
+            }
+            return sendBuf;
+        }
         return null;
     }
 
