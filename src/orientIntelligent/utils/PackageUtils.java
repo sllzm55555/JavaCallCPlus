@@ -15,9 +15,15 @@ import orientIntelligent.jni.jni_enum.CountryCode;
  */
 public class PackageUtils {
 
+    static {
+        //本地路径
+        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
+        //VS路径
+//        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
+    }
+
 
     public static void main(String[] args) {
-
 
         PackageEntity packageEntity = new PackageEntity();
         /*地址域
@@ -38,16 +44,15 @@ public class PackageUtils {
         应用层功能码
          */
         packageEntity.setRequestType(Cenumclass.E_appFuncCode.E_AFC_LKDT.name());
-
         /*
         设置数据单元
          */
         packageEntity.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
-        PackageUtils packageUtils = new PackageUtils();
-        packageUtils.packageData(packageEntity);
+        packageData(packageEntity);
+
     }
-    public byte[] packageData(PackageEntity packageEntity){
+    public static byte[] packageData(PackageEntity packageEntity){
 
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
 
@@ -76,7 +81,7 @@ public class PackageUtils {
         boolean fcvBit = true;
         boolean fcbBit = true;
         Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
-        tmpDir = Cenumclass.E_transDir.getTransDirCodeByName(direction);
+        tmpDir = Cenumclass.E_transDir.getEnumByName(direction);
 
         //Cenumclass.E_ctlFunCode tmpcfc = Cenumclass.E_ctlFunCode.getEnumCodeByName(direction);
 

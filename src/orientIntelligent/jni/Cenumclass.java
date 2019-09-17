@@ -60,7 +60,7 @@ public class Cenumclass {
             this.value = val;
         }
 
-        public static E_transDir getTransDirCodeByName(String name){
+        public static E_transDir getEnumByName(String name){
             E_transDir[] values = E_transDir.values();
             for (E_transDir code : values) {
                 if(name.equals(code.name())){

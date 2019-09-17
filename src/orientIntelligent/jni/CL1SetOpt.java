@@ -9,12 +9,12 @@ import orientIntelligent.jni.DFSLDataType.CS_addrField;
 
 public class CL1SetOpt extends CDFSLProOpt{
 
-    static {
+    /*static {
         //本地路径
         //System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
         //VS路径
         System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
-    }
+    }*/
    // public native
     /**
      *

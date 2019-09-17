@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class CCommunicate {
 
 
-    static {
+    /*static {
 
         // System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
         //本地路径
@@ -28,7 +28,7 @@ public class CCommunicate {
         //VS路径  E:\VS\DFSLProDemo\x64\Debug
         System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
        // System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-    }
+    }*/
 
     public   native  CommunicationProtocol parse_message(byte[] bytes);
 
