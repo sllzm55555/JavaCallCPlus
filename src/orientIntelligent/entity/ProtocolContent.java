@@ -27,16 +27,17 @@ public class ProtocolContent {
      * 校验和
      */
     private int checkSum;
+    /**
+     * 附加信息 (时间标签, 事件数, 消息认证码)
+     */
+    private ExtraMessage extraMessage;
 
-    public ProtocolContent() {
+    public ExtraMessage getExtraMessage() {
+        return extraMessage;
     }
 
-    public ProtocolContent(int length, ControlField controlField, AddressField addressField, LinkData linkData, int checkSum) {
-        this.length = length;
-        this.controlField = controlField;
-        this.addressField = addressField;
-        this.linkData = linkData;
-        this.checkSum = checkSum;
+    public void setExtraMessage(ExtraMessage extraMessage) {
+        this.extraMessage = extraMessage;
     }
 
     public int getLength() {
