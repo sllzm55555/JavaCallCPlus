@@ -1,25 +1,20 @@
 package orientIntelligent.jni;
 
 public class Cenumclass {
-    /*public Cenumclass()
-    {
 
-    }*/
     public enum E_CheckPackage{
-//        E_CKPKG_FRAMEERR((byte)1),	//帧错误   ，不能解析数据区
-        E_CKPKG_CONTINUE    ((byte)2),	//有后续帧	，还需要接收完后续帧才能解析数据区
-        E_CKPKG_SUCCESS     ((byte)3),	//可以进行数据区的解析
-//        E_CKPKG_MALLOCERR   ((byte)4),	//申请内存错误
-        E_CKPKG_INITERR     ((byte)5),	//函数指针初始化失败
-        E_CKPKG_TIMEOUT     ((byte)6),
 
-        E_CKPKG_ERRSTAFLAG  ((byte)7),  //错误的起始字符
-        E_CKPKG_ERRLENBIT   ((byte)8),	//长度位不一致
-        E_CKPKG_ERRFRAMELEN ((byte)9),  //帧长度错误
-        E_CKPKG_ERRMALLOC   ((byte)10), //内存申请失败
-        E_CKPKG_ERRCHECKSUM ((byte)11), //校验和校验失败
-        E_CKPKG_ERRENDFLAG  ((byte)12), //错误的结束字符
-        E_CKPKG_ERRFRAMESEQ ((byte)13); //帧位置（序列）错误
+        E_CKPKG_CONTINUE    ((byte)1),	//有后续帧	，还需要接收完后续帧才能解析数据区
+        E_CKPKG_SUCCESS     ((byte)2 ),	//可以进行数据区的解析
+        E_CKPKG_INITERR     ((byte)3 ),	//函数指针初始化失败
+        E_CKPKG_TIMEOUT     ((byte)4 ), //超时
+        E_CKPKG_ERRSTAFLAG  ((byte)5 ), //错误的起始字符
+        E_CKPKG_ERRLENBIT   ((byte)6 ),	//长度位不一致
+        E_CKPKG_ERRFRAMELEN ((byte)7 ), //帧长度错误
+        E_CKPKG_ERRMALLOC   ((byte)8 ), //内存申请失败
+        E_CKPKG_ERRCHECKSUM ((byte)9 ), //校验和校验失败
+        E_CKPKG_ERRENDFLAG  ((byte)10), //错误的结束字符
+        E_CKPKG_ERRFRAMESEQ ((byte)11); //帧位置（序列）错误
         private byte value;
         E_CheckPackage (byte val){
             this.value = val;
