@@ -35,7 +35,7 @@ public enum AdminZoneCode {
         return this.zoneName;
     }
 
-    private int value(){
+    public int value(){
         return this.value;
     }
 

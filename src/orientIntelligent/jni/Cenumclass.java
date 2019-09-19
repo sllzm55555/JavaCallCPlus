@@ -195,7 +195,7 @@ public class Cenumclass {
         }
     }
 
-    enum E_LinkDetection{
+    public enum E_LinkDetection{
         E_LKDETEC_LOGIN((byte)1),    //F1登录
         E_LKDETEC_LOGOUT((byte)2),	//F2登出
         E_LKDETEC_HEARTBEAT((byte)3),//F3心跳
