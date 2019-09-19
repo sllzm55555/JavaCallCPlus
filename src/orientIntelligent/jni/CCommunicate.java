@@ -20,7 +20,10 @@ import javax.swing.JOptionPane;
 public class CCommunicate {
 
     static {
-        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
+        //VS
+//        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
+        //Idea
+        System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
     }
     public   native  CommunicationProtocol parse_message(byte[] bytes);
 
