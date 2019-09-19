@@ -19,17 +19,9 @@ import javax.swing.JOptionPane;
 
 public class CCommunicate {
 
-
-    /*static {
-
-        // System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        //本地路径
-        //System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        //VS路径  E:\VS\DFSLProDemo\x64\Debug
+    static {
         System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
-       // System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-    }*/
-
+    }
     public   native  CommunicationProtocol parse_message(byte[] bytes);
 
     public void parse_msg_server(byte bytes[])
@@ -214,8 +206,6 @@ public class CCommunicate {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-
-
 
         CCommunicate com =  new CCommunicate();
         if(hearbeat!=null) {

@@ -8,16 +8,20 @@ import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
 import orientIntelligent.jni.jni_enum.AdminZoneCode;
 import orientIntelligent.jni.jni_enum.CountryCode;
 
+import javax.swing.*;
+import java.io.*;
+
 /**
  * @author wt
  * @version 1.0.0
  * @date 2019-09-16
  */
 public class PackageUtils {
-
+    //E:\Idea\JavaCallCPlus1\src\orientIntelligent\dll\DFSLProDemo.dll
+    public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
     static {
         //本地路径
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
+        //System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
         //VS路径
 //        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
     }
@@ -49,10 +53,19 @@ public class PackageUtils {
          */
         packageEntity.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
-        packageData(packageEntity);
+        byte[] bytes = packageData(packageEntity);
 
     }
     public static byte[] packageData(PackageEntity packageEntity){
+
+//        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
+//        try {
+//            //loadLib("MyMathLibForJava.dll");C:\Users\Administrator\AppData\Local\Temp\MyMathLibForJava.dll.dll
+//            loadLib("DFSLProDemo");
+//            //JOptionPane.showMessageDialog(null, "1234");
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, ex.getStackTrace());
+//        }
 
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
 
@@ -119,7 +132,7 @@ public class PackageUtils {
             return null;
         }
         /*设置附加信息
-        重要事件计数器 一般事件计数器  启动帧计数器 消息认证码
+        重要事件计数器 一般事件计数器 启动帧计数器 消息认证码
          */
         byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//消息认证码
         byte importantEventCount = (byte)0x6;//重要事件计数器
@@ -142,5 +155,47 @@ public class PackageUtils {
         return null;
     }
 
+    public synchronized static void loadLib(String libName) throws IOException {
+        String systemType = System.getProperty("os.name");
+        String libExtension = (systemType.toLowerCase().indexOf("win")!=-1) ? ".dll" : ".so";
+        System.out.println("libExtension:"+libExtension);
+        String libFullName = libName + libExtension;
+        System.out.println("libFullName:"+libFullName);
+        String nativeTempDir = System.getProperty("java.io.tmpdir");
+        System.out.println("nativeTempDir:"+nativeTempDir);
+        InputStream in = null;
+        BufferedInputStream reader = null;
+        FileOutputStream writer = null;
+        String fullFileNameOut = nativeTempDir+ File.separator+libFullName;
+        System.out.println("fullFileNameOut:"+fullFileNameOut);
+
+        String fullFileNameIn = PackageUtils.BIN_LIB + libFullName;
+        System.out.println("fullFileNameIn:"+fullFileNameIn);
+        File extractedLibFile = new File(nativeTempDir+File.separator+libFullName);
+        System.out.println("extractedLibFile.exists():"+extractedLibFile.exists());
+
+        try {
+            //FileInputStream fis = new FileInputStream("f:\\files\\1.txt");
+            FileInputStream fis = new FileInputStream(fullFileNameIn);
+            //FileOutputStream fos = new FileOutputStream("f:\\files\\copy.txt");
+            FileOutputStream fos = new FileOutputStream(fullFileNameOut);
+            int n = 0;
+            while ((n = fis.read()) != -1) {
+                fos.write(n);
+            }
+
+            fis.close();
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        System.load(extractedLibFile.toString());
+    }
 
 }
