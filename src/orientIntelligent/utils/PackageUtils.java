@@ -24,7 +24,7 @@ public class PackageUtils {
         //本地路径
         //System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
         //VS路径
-        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
+//        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
     }
 
 
@@ -156,6 +156,7 @@ public class PackageUtils {
         }
         return null;
     }
+
 
     public synchronized static void loadLib(String libName) throws IOException {
         String systemType = System.getProperty("os.name");

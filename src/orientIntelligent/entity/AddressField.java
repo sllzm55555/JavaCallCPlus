@@ -48,4 +48,20 @@ public class AddressField {
     public String getSerializeCode() {
         return serializeCode;
     }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public void setZoneCode(String zoneCode) {
+        this.zoneCode = zoneCode;
+    }
+
+    public void setRobotCode(String robotCode) {
+        this.robotCode = robotCode;
+    }
+
+    public void setSerializeCode(String serializeCode) {
+        this.serializeCode = serializeCode;
+    }
 }
