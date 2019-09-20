@@ -1,8 +1,8 @@
 package orientIntelligent.utils;
 
 import orientIntelligent.entity.*;
-import orientIntelligent.entity.root.AddressField;
-import orientIntelligent.entity.root.LinkData;
+import orientIntelligent.entity.AddressField;
+import orientIntelligent.entity.LinkData;
 import orientIntelligent.jni.CL1SetOpt;
 import orientIntelligent.jni.Cenumclass;
 import orientIntelligent.jni.DFSLDataType.CS_addrField;

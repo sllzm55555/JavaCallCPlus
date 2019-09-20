@@ -1,4 +1,4 @@
-package orientIntelligent.entity.root;
+package orientIntelligent.entity;
 
 /**
  * @author wt
@@ -31,6 +31,17 @@ public class ProtocolContent {
      * 附加信息 (时间标签, 事件数, 消息认证码)
      */
     private ExtraMessage extraMessage;
+
+    public ProtocolContent() {
+    }
+
+    public ProtocolContent(int length, ControlField controlField, AddressField addressField, LinkData linkData, int checkSum) {
+        this.length = length;
+        this.controlField = controlField;
+        this.addressField = addressField;
+        this.linkData = linkData;
+        this.checkSum = checkSum;
+    }
 
     public ExtraMessage getExtraMessage() {
         return extraMessage;

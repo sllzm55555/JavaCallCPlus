@@ -1,4 +1,4 @@
-package orientIntelligent.entity.root;
+package orientIntelligent.entity;
 
 /**
  * @author wt

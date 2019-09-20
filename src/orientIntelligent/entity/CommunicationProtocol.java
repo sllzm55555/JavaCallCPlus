@@ -1,6 +1,5 @@
 package orientIntelligent.entity;
 
-import orientIntelligent.entity.root.ProtocolContent;
 import orientIntelligent.jni.Cenumclass;
 
 /**

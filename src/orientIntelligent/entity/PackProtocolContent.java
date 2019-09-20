@@ -1,7 +1,5 @@
 package orientIntelligent.entity;
 
-import orientIntelligent.entity.root.ProtocolContent;
-
 /**
  * @author wt
  * @version 1.0.0
