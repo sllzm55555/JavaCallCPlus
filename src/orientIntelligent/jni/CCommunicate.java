@@ -1,21 +1,14 @@
 package orientIntelligent.jni;
 
-import orientIntelligent.entity.*;
+import orientIntelligent.entity.CommunicationProtocol;
+import orientIntelligent.entity.root.ControlField;
+import orientIntelligent.entity.root.DataUnit;
 import orientIntelligent.jni.DFSLDataType.CEvent;
 import orientIntelligent.jni.DFSLDataType.CS_A1;
 import orientIntelligent.jni.DFSLDataType.CS_A16;
-import orientIntelligent.jni.DFSLDataType.CS_addrField;
-
-import java.io.InputStream;
 
 
-import java.net.ServerSocket;
-import java.net.Socket;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class CCommunicate {
 
@@ -25,7 +18,7 @@ public class CCommunicate {
         //Idea
 //        System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
     }
-    public   native  CommunicationProtocol parse_message(byte[] bytes);
+    public   native CommunicationProtocol parse_message(byte[] bytes);
 
     public void parse_msg_server(byte bytes[])
     {

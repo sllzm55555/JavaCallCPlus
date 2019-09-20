@@ -1,4 +1,4 @@
-package orientIntelligent.entity;
+package orientIntelligent.entity.root;
 
 import orientIntelligent.jni.Cenumclass;
 

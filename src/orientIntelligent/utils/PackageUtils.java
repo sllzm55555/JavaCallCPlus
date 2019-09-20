@@ -1,6 +1,8 @@
 package orientIntelligent.utils;
 
-import orientIntelligent.entity.PackageEntity;
+import orientIntelligent.entity.*;
+import orientIntelligent.entity.root.AddressField;
+import orientIntelligent.entity.root.LinkData;
 import orientIntelligent.jni.CL1SetOpt;
 import orientIntelligent.jni.Cenumclass;
 import orientIntelligent.jni.DFSLDataType.CS_addrField;
@@ -8,7 +10,6 @@ import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
 import orientIntelligent.jni.jni_enum.AdminZoneCode;
 import orientIntelligent.jni.jni_enum.CountryCode;
 
-import javax.swing.*;
 import java.io.*;
 
 /**
@@ -29,34 +30,32 @@ public class PackageUtils {
 
     public static void main(String[] args) {
 
-        PackageEntity packageEntity = new PackageEntity();
+        PackProtocolContent packProtocol = new PackProtocolContent();
         /*地址域
         序列号 行政区划码 机器型号 国家代码
         */
-        packageEntity.setAdminZoneCode("成都");//行政区划码
-        packageEntity.setCountyCode("中国");//国家代码
-        packageEntity.setSerializableCode("123456");//序列号
-        packageEntity.setRobotModelCode(99);//机器型号
+        packProtocol.setAddressField(new AddressField("中国", "成都", "99", "123456"));
 
         /*控制域
         帧传输方向,帧计数位,帧有效位, 链路层功能码
         帧计数位 帧有效位 链路层功能码 暂未设置
         */
-        packageEntity.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());//帧传输方向
+        packProtocol.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());
 
         /*
         应用层功能码
          */
-        packageEntity.setRequestType(Cenumclass.E_appFuncCode.E_AFC_LKDT.name());
+        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
         /*
         设置数据单元
          */
-        packageEntity.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
+        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
-        byte[] bytes = packageData(packageEntity);
+        packageData(packProtocol);
 
     }
-    public static byte[] packageData(PackageEntity packageEntity){
+    public static byte[] packageData(PackProtocolContent packProtocol){
+
 
 //        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
 //        try {
@@ -74,12 +73,16 @@ public class PackageUtils {
 
         //设置地址域
         CS_addrField addrField = new CS_addrField();
-        String serializableCode = packageEntity.getSerializableCode();
+//        String serializableCode = packageEntity.getSerializableCode();
+        String serializableCode = packProtocol.getAddressField().getSerializeCode();
         byte[] A4_SN = serializableCode.getBytes();
-        int adminZoneCode = AdminZoneCode.getValueByName(packageEntity.getAdminZoneCode());
-        int robotModelCode = packageEntity.getRobotModelCode();
-        byte countyCode = CountryCode.getValueByName(packageEntity.getCountyCode());
-        addrField.set_A1_countcode(countyCode);
+//        int adminZoneCode = AdminZoneCode.getValueByName(packageEntity.getAdminZoneCode());
+        int adminZoneCode = AdminZoneCode.getValueByName(packProtocol.getAddressField().getZoneCode());
+//        int robotModelCode = packageEntity.getRobotModelCode();
+        int robotModelCode = Integer.valueOf(packProtocol.getAddressField().getRobotCode());
+//        byte countryCode = CountryCode.getValueByName(packageEntity.getCountyCode());
+        byte countryCode = CountryCode.getValueByName(packProtocol.getAddressField().getCountryCode());
+        addrField.set_A1_countcode(countryCode);
         addrField.set_A4_SN(A4_SN);
         byte[] modeCode = BytesUtil.int2Bytes(robotModelCode);
         addrField.set_tmladd(modeCode[0],modeCode[1]);
@@ -87,23 +90,22 @@ public class PackageUtils {
         addrField.set_adminZoneCode(zoneCode[0],zoneCode[1],zoneCode[2],zoneCode[3]);
         tmpL1SetOpt.set_addrField(DFSLProID,addrField);//设置到内存
         //控制域
-        String direction = packageEntity.getDirection();
-        Cenumclass.E_transDir tmpDir = null;
+//        String direction = packageEntity.getDirection();
+        String direction = packProtocol.getDirection();
 
         //byte tmpcfc = 0;
         boolean fcvBit = true;
         boolean fcbBit = true;
         Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
-        tmpDir = Cenumclass.E_transDir.getEnumByName(direction);
-
-        //Cenumclass.E_ctlFunCode tmpcfc = Cenumclass.E_ctlFunCode.getEnumCodeByName(direction);
+        Cenumclass.E_transDir tmpDir = Cenumclass.E_transDir.getEnumByName(direction);
 
         tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, cfc);//设置到内存
         //应用层功能码
-        Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.getEnumByName(packageEntity.getRequestType());
+//        Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.getEnumByName(packageEntity.getRequestType());
+        Cenumclass.E_appFuncCode tmpafc = packProtocol.getLinkData().getApplicationFunctionCode();
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //设置数据单元
-        String isConfirm = packageEntity.getIsConfirm();
+        String isConfirm = packProtocol.getIsConfirm();
 
         CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
         Cenumclass.E_ConfirmOrDeny Fn = Cenumclass.E_ConfirmOrDeny.getEnumByName(isConfirm);
