@@ -13,7 +13,8 @@ import java.util.List;
 public class CCommunicate {
 
     static{
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
     }
     public   native CommunicationProtocol parse_message(byte[] bytes);
 
@@ -211,7 +212,9 @@ public class CCommunicate {
 
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
-            CommunicationProtocol parseMessage = com.parse_message(realTimeData);
+            CommunicationProtocol parseMessage = com.parse_message(hearbeat);
+            int as;
+            System.out.println(parseMessage.getMessage());
         }
         else
         {
