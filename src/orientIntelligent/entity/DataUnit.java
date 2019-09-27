@@ -21,11 +21,11 @@ public class DataUnit {
     public DataUnit() {
     }
 
-    public DataUnit(int fn, int pn, String heartBeat) {
-        super();
+    public DataUnit(int fn, int pn, String heartBeat, String sensorData) {
         this.fn = fn;
         this.pn = pn;
         this.heartBeat = heartBeat;
+        this.sensorData = sensorData;
     }
 
     public int getFn() {

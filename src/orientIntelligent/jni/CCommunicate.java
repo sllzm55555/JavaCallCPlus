@@ -236,16 +236,16 @@ public class CCommunicate {
                 System.out.println("parseMessage ControlField Prm:"+up.getPrm());
                 System.out.println("parseMessage ControlField FunctionCode:"+up.getFunctionCode());
 
-                List<DataUnit> dataUnitList = parseMessage.getProtocolContent().getLinkData().getDataUnitList();
+                //List<DataUnit> dataUnitList = parseMessage.getProtocolContent().getLinkData().getDataUnitList();
 
-                System.out.println("getHeartBeat:"+dataUnitList.get(0).getHeartBeat().toString());
-                System.out.println("getFn:"+dataUnitList.get(0).getFn());
-                System.out.println("getPn:"+dataUnitList.get(0).getPn());
-
-                if(dataUnitList==null)
-                {
-                    System.out.println("dataUnitList is empty:");
-                }
+                //System.out.println("getHeartBeat:"+dataUnitList.get(0).getHeartBeat().toString());
+//                System.out.println("getFn:"+dataUnitList.get(0).getFn());
+//                System.out.println("getPn:"+dataUnitList.get(0).getPn());
+//
+//                if(dataUnitList==null)
+//                {
+//                    System.out.println("dataUnitList is empty:");
+//                }
             }
         }
         else
