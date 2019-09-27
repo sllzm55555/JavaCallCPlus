@@ -13,8 +13,8 @@ import java.util.List;
 public class CCommunicate {
 
     static{
-//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+ //       System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
     }
     public   native CommunicationProtocol parse_message(byte[] bytes);
 

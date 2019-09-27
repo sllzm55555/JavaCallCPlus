@@ -53,7 +53,7 @@ public class PackageUtils {
     public static byte[] packageData(PackProtocolContent packProtocol){
 
 
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
 //        try {
 //            //loadLib("MyMathLibForJava.dll");C:\Users\Administrator\AppData\Local\Temp\MyMathLibForJava.dll.dll
 //            loadLib("DFSLProDemo");
