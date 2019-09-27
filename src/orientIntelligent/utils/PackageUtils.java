@@ -148,15 +148,7 @@ public class PackageUtils {
         //注销
         tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
 
-        if(null!=sendBuf)
-        {
-            for (byte sb: sendBuf
-                 ) {
-              System.out.print(" "+(int)sb);
-            }
-            return sendBuf;
-        }
-        return null;
+        return sendBuf;
     }
 
 

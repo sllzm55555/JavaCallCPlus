@@ -11,7 +11,8 @@ public enum AdminZoneCode {
      *
      */
     chengdu("成都", 1186),
-    guizhou("贵州", 1287);
+    guizhou("贵州", 1287),
+    deyang("0830", 830);
 
     private String zoneName;
     private int value;

@@ -13,7 +13,7 @@ import java.util.List;
 public class CCommunicate {
 
     static{
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
     }
     public   native CommunicationProtocol parse_message(byte[] bytes);
 
@@ -212,41 +212,6 @@ public class CCommunicate {
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
             CommunicationProtocol parseMessage = com.parse_message(realTimeData);
-            System.out.println("->DEBUG:");
-            if (parseMessage != null) {
-                System.out.println("parseMessage getMessage:"+parseMessage.getMessage());
-                System.out.println("parseMessage getStatus:"+parseMessage.getStatus());
-                System.out.println("parseMessage getLength:"+parseMessage.getProtocolContent().getLength());
-                System.out.println("parseMessage getCheckSum:"+parseMessage.getProtocolContent().getCheckSum());
-
-                //AddressField
-                System.out.println("parseMessage CountryCode:"+parseMessage.getProtocolContent().getAddressField().getCountryCode());
-                System.out.println("parseMessage RobotCode:"+parseMessage.getProtocolContent().getAddressField().getRobotCode());
-                System.out.println("parseMessage ZoneCode:"+parseMessage.getProtocolContent().getAddressField().getZoneCode());
-                System.out.println("parseMessage SN:"+parseMessage.getProtocolContent().getAddressField().getSerializeCode());
-
-                //ControlField
-                ControlField.UpLink up = parseMessage.getProtocolContent().getControlField().getUp();
-
-                //up.getUp()
-                //ControlField.UpLink up = cf.new UpLink(1,2,3,4,6);
-                System.out.println("parseMessage ControlField getReserve:"+up.getReserve());
-                System.out.println("parseMessage ControlField ACD:"+up.getAcd());
-                System.out.println("parseMessage ControlField Dir:"+up.getDir());
-                System.out.println("parseMessage ControlField Prm:"+up.getPrm());
-                System.out.println("parseMessage ControlField FunctionCode:"+up.getFunctionCode());
-
-                //List<DataUnit> dataUnitList = parseMessage.getProtocolContent().getLinkData().getDataUnitList();
-
-                //System.out.println("getHeartBeat:"+dataUnitList.get(0).getHeartBeat().toString());
-//                System.out.println("getFn:"+dataUnitList.get(0).getFn());
-//                System.out.println("getPn:"+dataUnitList.get(0).getPn());
-//
-//                if(dataUnitList==null)
-//                {
-//                    System.out.println("dataUnitList is empty:");
-//                }
-            }
         }
         else
         {
