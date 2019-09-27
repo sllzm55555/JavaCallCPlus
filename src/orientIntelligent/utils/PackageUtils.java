@@ -18,15 +18,8 @@ import java.io.*;
  * @date 2019-09-16
  */
 public class PackageUtils {
-    //E:\Idea\JavaCallCPlus1\src\orientIntelligent\dll\DFSLProDemo.dll
-    public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
-    static {
-        //本地路径
-        //System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        //VS路径
-//        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
-    }
 
+    public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
 
     public static void main(String[] args) {
 
@@ -45,11 +38,14 @@ public class PackageUtils {
         /*
         应用层功能码
          */
-        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
+        //链路检测
+//        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
+        //实时数据
+        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_RLTDATA, null, null));
         /*
         设置数据单元
          */
-        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
+//        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
         packageData(packProtocol);
 
@@ -57,7 +53,7 @@ public class PackageUtils {
     public static byte[] packageData(PackProtocolContent packProtocol){
 
 
-        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
 //        try {
 //            //loadLib("MyMathLibForJava.dll");C:\Users\Administrator\AppData\Local\Temp\MyMathLibForJava.dll.dll
 //            loadLib("DFSLProDemo");
@@ -96,7 +92,10 @@ public class PackageUtils {
         //byte tmpcfc = 0;
         boolean fcvBit = true;
         boolean fcbBit = true;
-        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
+        //链路测试
+//        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
+        //实时数据
+        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT;
         Cenumclass.E_transDir tmpDir = Cenumclass.E_transDir.getEnumByName(direction);
 
         tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, cfc);//设置到内存
@@ -105,34 +104,37 @@ public class PackageUtils {
         Cenumclass.E_appFuncCode tmpafc = packProtocol.getLinkData().getApplicationFunctionCode();
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //设置数据单元
-        String isConfirm = packProtocol.getIsConfirm();
+        tmpL1SetOpt.set_userData_dataUnit_realTimeData_downlink(DFSLProID,Cenumclass.E_Pn.E_PN_WATERQUALITY);
 
-        CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
-        Cenumclass.E_ConfirmOrDeny Fn = Cenumclass.E_ConfirmOrDeny.getEnumByName(isConfirm);
-        switch (Fn)
-        {
-            case E_CONDENY_CONFIRMALL://F1 全部确认 数据区为空
-                break;
-            case E_CONDENY_GENERALDENY://F2 全部否认 数据区为空
-                break;
-            case E_CONDENY_WRDATAUNITERR://F3 数据区带F3错误码
-                //F3
-                targetConfirmOrDeny =
-                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
-                break;
-            case E_CONDENY_HARDWAREERR: //F4 硬件错误
-                byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-                //########################################
-                targetConfirmOrDeny =
-                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
-                break;
-        }
-        boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_TERMAL, Fn,targetConfirmOrDeny);
-        if(retSet == false)
-        {
-            tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
-            return null;
-        }
+
+//        String isConfirm = packProtocol.getIsConfirm();
+//
+//        CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
+//        Cenumclass.E_ConfirmOrDeny Fn = Cenumclass.E_ConfirmOrDeny.getEnumByName(isConfirm);
+//        switch (Fn)
+//        {
+//            case E_CONDENY_CONFIRMALL://F1 全部确认 数据区为空
+//                break;
+//            case E_CONDENY_GENERALDENY://F2 全部否认 数据区为空
+//                break;
+//            case E_CONDENY_WRDATAUNITERR://F3 数据区带F3错误码
+//                //F3
+//                targetConfirmOrDeny =
+//                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
+//                break;
+//            case E_CONDENY_HARDWAREERR: //F4 硬件错误
+//                byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+//                //########################################
+//                targetConfirmOrDeny =
+//                        new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
+//                break;
+//        }
+//        boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_TERMAL, Fn,targetConfirmOrDeny);
+//        if(retSet == false)
+//        {
+//            tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
+//            return null;
+//        }
         /*设置附加信息
         重要事件计数器 一般事件计数器 启动帧计数器 消息认证码
          */

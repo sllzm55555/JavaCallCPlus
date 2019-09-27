@@ -2,6 +2,204 @@ package orientIntelligent.jni;
 
 public class Cenumclass {
 
+    public enum E_rltdat {
+        /*#######################################################################################*/
+        /*水质*/
+        E_RLTDAT_WATERTEMP      ((byte)179),	//water temperature 温度  水质传感器
+        E_RLTDAT_TURBIDIMETER   ((byte)180),	//turbidimeter 浊度
+        E_RLTDAT_DISSOLVEDOXYGEN((byte)181),	//dissolved oxygen; 溶解氧
+        E_RLTDAT_CONDUCTIVITY   ((byte)182),	//conductivity 电导率
+        E_RLTDAT_PH             ((byte)183),	//PH值
+        E_RLTDAT_BLUEGREENALGA  ((byte)184),	//blue green alga 蓝绿藻
+        E_RLTDAT_CHLOROPHYLL    ((byte)185),	//chlorophyll 叶绿素
+        E_RLTDAT_PHOSPHORUS     ((byte)186),	//total phosphorus 总磷
+        E_RLTDAT_NITROGEN       ((byte)187),	//total nitrogen   总氮
+        E_RLTDAT_ANMMONIANITROGEN((byte)188),	//anmmonia nitrogen氨氮
+        /*#######################################################################################*/
+        /*水文*/
+        //FIXME						//temperature 温度   水文传感器
+        E_RLTDAT_SALINITY       ((byte)189),	//salinity 盐度
+        E_RLTDAT_DENSITY        ((byte)190),	//density 密度
+        E_RLTDAT_FLWRATE        ((byte)191),	//flow rate 流速
+        E_RLTDAT_FLWTOWARDS     ((byte)192),	//flow towards 流向
+        E_RLTDAT_CAPACITY       ((byte)193),	//flow capacity 流量
+        E_RLTDAT_WATERLV        ((byte)194),	//water level 水位
+        /*#######################################################################################*/
+        /*姿态传感器*/
+        E_RLTDAT_HEADING        ((byte)195),	//heading 航向
+        E_RLTDAT_ROLLING        ((byte)196),	//rolling 横滚
+        E_RLTDAT_PITCHING       ((byte)197),	//pitching 俯仰
+        E_RLTDAT_ACCELERATION   ((byte)198),	//Acceleration 加速度
+        /*#######################################################################################*/
+        ///*气象传感器*/
+        E_RLTDAT_WINDDIR        ((byte)199),	//wind direction 风向
+        E_RLTDAT_WINDSPEED      ((byte)200),	//wind speed 风速
+        E_RLTDAT_TEMPERATURE    ((byte)201),	//气温
+        E_RLTDAT_HUMIDITY       ((byte)202),	//humidity 湿度
+        E_RLTDAT_ATMOSPHERIC    ((byte)203),	//atmospheric 大气压
+        E_RLTDAT_RAINFALL       ((byte)204),	//rainfall 降雨量
+        /*#######################################################################################*/
+        /*测距 超声*/
+        E_RLTDAT_ULTRADISTANCE  ((byte)205),	//distance 距离 超声
+        /*测距 超声阵列*/
+        E_RLTDAT_ARRYULTRADIS   ((byte)206),	//distance 距离 超声阵列
+        /*#######################################################################################*/
+        ///*测距 毫米波*/
+        ///*测距 毫米波阵列*/
+        E_RLTDAT_MMWAVEDISTANCE ((byte)207),	//distance 距离 毫米波
+        E_RLTDAT_ARRYMILLIDIS   ((byte)208),	//distance 距离 毫米波阵列
+        /*#######################################################################################*/
+        /*#######################################################################################*/
+        ///*经纬度*/
+        E_RLTDAT_LONGITUDE      ((byte)209),	//经度 longitude
+        E_RLTDAT_LATITUDE       ((byte)210),	//纬度 latitude
+        /*#######################################################################################*/
+        /*清污机构*/
+        E_RLTDAT_RMVCONTAMINATION((byte)211),	//removal of contamination 清污量
+        /*#######################################################################################*/
+        /*电机*/
+        E_RLTDAT_MOTORPOWER     ((byte)212),	//motor power电机功率
+        E_RLTDAT_MOTORSPEED     ((byte)213),	//motor speed电机转速
+        E_RLTDAT_MOTORVOLTAGE   ((byte)214),	//motor voltage 电机电压
+        /*#######################################################################################*/
+        /*版本信息*/
+        E_RLTDAT_FIRMWAREVERSION((byte)215),	//硬件固件版本
+        E_RLTDAT_SOFTWAREVERSION((byte)216),	//软件版本
+        E_RLTDAT_RESERVE        ((byte)217);	//
+
+        private byte value;
+
+        E_rltdat(byte value) {
+            this.value = value;
+        }
+
+        public static E_rltdat getEnumByName(String name){
+            E_rltdat[] values = E_rltdat.values();
+            for (E_rltdat code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (E_rltdat e : E_rltdat.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
+        public byte getValue() {
+            return value;
+        }
+    }
+
+    public enum E_hisdat {
+        /*#######################################################################################*/
+        /*水质*/
+        E_HISDAT_WATERTEMP      ((byte)179),	//water temperature 温度  水质传感器
+        E_HISDAT_TURBIDIMETER   ((byte)180),	//turbidimeter 浊度
+        E_HISDAT_DISSOLVEDOXYGEN((byte)181),	//dissolved oxygen; 溶解氧
+        E_HISDAT_CONDUCTIVITY   ((byte)182),	//conductivity 电导率
+        E_HISDAT_PH             ((byte)183),	//PH值
+        E_HISDAT_BLUEGREENALGA  ((byte)184),	//blue green alga 蓝绿藻
+        E_HISDAT_CHLOROPHYLL    ((byte)185),	//chlorophyll 叶绿素
+        E_HISDAT_PHOSPHORUS     ((byte)186),	//total phosphorus 总磷
+        E_HISDAT_NITROGEN       ((byte)187),	//total nitrogen   总氮
+        E_HISDAT_ANMMONIANITROGEN((byte)188),	//anmmonia nitrogen氨氮
+        /*#######################################################################################*/
+        /*水文*/
+        //FIXME						//temperature 温度   水文传感器
+        E_HISDAT_SALINITY       ((byte)189),	//salinity 盐度
+        E_HISDAT_DENSITY        ((byte)190),	//density 密度
+        E_HISDAT_FLWRATE        ((byte)191),	//flow rate 流速
+        E_HISDAT_FLWTOWARDS     ((byte)192),	//flow towards 流向
+        E_HISDAT_CAPACITY       ((byte)193),	//flow capacity 流量
+        E_HISDAT_WATERLV        ((byte)194),	//water level 水位
+        /*#######################################################################################*/
+        /*姿态传感器*/
+        E_HISDAT_HEADING        ((byte)195),	//heading 航向
+        E_HISDAT_ROLLING        ((byte)196),	//rolling 横滚
+        E_HISDAT_PITCHING       ((byte)197),	//pitching 俯仰
+        E_HISDAT_ACCELERATION   ((byte)198),	//Acceleration 加速度
+        /*#######################################################################################*/
+        ///*气象传感器*/
+        E_HISDAT_WINDDIR        ((byte)199),	//wind direction 风向
+        E_HISDAT_WINDSPEED      ((byte)200),	//wind speed 风速
+        E_HISDAT_TEMPERATURE    ((byte)201),	//气温
+        E_HISDAT_HUMIDITY       ((byte)202),	//humidity 湿度
+        E_HISDAT_ATMOSPHERIC    ((byte)203),	//atmospheric 大气压
+        E_HISDAT_RAINFALL       ((byte)204),	//rainfall 降雨量
+        /*#######################################################################################*/
+        /*测距 超声*/
+        E_HISDAT_ULTRADISTANCE  ((byte)205),	//distance 距离 超声
+        /*测距 超声阵列*/
+        E_HISDAT_ARRYULTRADIS   ((byte)206),	//distance 距离 超声阵列
+        /*#######################################################################################*/
+        ///*测距 毫米波*/
+        ///*测距 毫米波阵列*/
+        E_HISDAT_MMWAVEDISTANCE ((byte)207),	//distance 距离 毫米波
+        E_HISDAT_ARRYMILLIDIS   ((byte)208),	//distance 距离 毫米波阵列
+        /*#######################################################################################*/
+        /*#######################################################################################*/
+        ///*经纬度*/
+        E_HISDAT_LONGITUDE      ((byte)209),	//经度 longitude
+        E_HISDAT_LATITUDE       ((byte)210),	//纬度 latitude
+        /*#######################################################################################*/
+        /*清污机构*/
+        E_HISDAT_RMVCONTAMINATION((byte)211),	//removal of contamination 清污量
+        /*#######################################################################################*/
+        /*电机*/
+        E_HISDAT_MOTORPOWER     ((byte)212),	//motor power电机功率
+        E_HISDAT_MOTORSPEED     ((byte)213),	//motor speed电机转速
+        E_HISDAT_MOTORVOLTAGE   ((byte)214),	//motor voltage 电机电压
+        /*#######################################################################################*/
+        /*版本信息*/
+        E_HISDAT_FIRMWAREVERSION((byte)215),	//硬件固件版本
+        E_HISDAT_SOFTWAREVERSION((byte)216),	//软件版本
+        E_HISDAT_RESERVE        ((byte)217);	//
+
+        private byte value;
+
+        E_hisdat(byte value) {
+            this.value = value;
+        }
+
+        public static E_hisdat getEnumByName(String name){
+            E_hisdat[] values = E_hisdat.values();
+            for (E_hisdat code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (E_hisdat e : E_hisdat.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
+        public byte getValue() {
+            return value;
+        }
+    }
+
     public enum E_CheckPackage{
 
         E_CKPKG_CONTINUE    ((byte)1),	//有后续帧	，还需要接收完后续帧才能解析数据区
@@ -237,7 +435,7 @@ public class Cenumclass {
      public enum E_Pn
     {
         E_PN_TERMAL((byte)0x00),			//表示终端本身
-        E_PN_WATERQUALITY1((byte)0x01),	    //水质感器测量点
+        E_PN_WATERQUALITY((byte)0x01),	    //水质感器测量点
         E_PN_HYDROLOGICAL((byte)0x02),		//水文传感器测量点
         E_PN_IMU((byte)0x03),				//姿态传感器测量点
         E_PN_METEOROLOGICAL((byte)0x04),   	//气象传感器测量点
@@ -256,25 +454,6 @@ public class Cenumclass {
         E_PN_360CAMERA4((byte)0x11),    	//360全景摄像头4测量点
         E_PN_MAX((byte)0x12);
 
-        /*E_PN_TERMAL((byte)0x00),			//表示终端本身
-        E_PN_WATERQUALITY1,	    //水质感器测量点
-        E_PN_HYDROLOGICAL,		//水文传感器测量点
-        E_PN_IMU,				//姿态传感器测量点
-        E_PN_METEOROLOGICAL,   	//气象传感器测量点
-        E_PN_ULTRASONIC,    	//超声传感器测量点
-        E_PN_ULTRASONIC_ARRY,  	//超声波阵列传感器测量点
-        E_PN_MMWAVE,    		//毫米波传感器测量点
-        E_PN_MMWAVE_ARRY,  		//毫米波阵列传感器测量点
-
-        E_PN_POSITION,  		//位置信息GPS OR 北斗测量点
-        E_PN_EXTENSIONARM,		//伸展臂 即清污机构
-        E_PN_ELECTRICALMACHINE,	//电机
-        E_PN_WAREVERSION,		//固件和软件版本
-        E_PN_RGBD,    			//RGB-D测量点
-        E_PN_360CAMERA1,        //360全景摄像头2测量点
-        E_PN_360CAMERA3,    	//360全景摄像头3测量点
-        E_PN_360CAMERA4,    	//360全景摄像头4测量点
-        E_PN_MAX;*/
 
         private byte value;
         E_Pn(byte val)

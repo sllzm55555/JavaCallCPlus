@@ -6,13 +6,22 @@ package orientIntelligent.entity;
  * @date 2019-09-19
  */
 public class TimeMark {
-
+    private int pfc;
     private String currentTime;
     private int delaySecond;
 
-    public TimeMark(String currentTime, int delaySecond) {
+    public TimeMark(int pfc, String currentTime, int delaySecond) {
+        this.pfc = pfc;
         this.currentTime = currentTime;
         this.delaySecond = delaySecond;
+    }
+
+    public int getPfc() {
+        return pfc;
+    }
+
+    public void setPfc(int pfc) {
+        this.pfc = pfc;
     }
 
     public TimeMark() {

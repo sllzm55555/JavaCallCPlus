@@ -13,6 +13,10 @@ public class DataUnit {
      * 1991年1月1日 20:10:10
      */
     private String heartBeat;
+    /**
+     * "1.234"  "12.34"  "123.4"  "1234"  "X" ..."XXX.XXXXXXX"
+     */
+    private String sensorData;
 
     public DataUnit() {
     }
@@ -46,5 +50,13 @@ public class DataUnit {
 
     public void setHeartBeat(String heartBeat) {
         this.heartBeat = heartBeat;
+    }
+
+    public String getSensorData() {
+        return sensorData;
+    }
+
+    public void setSensorData(String sensorData) {
+        this.sensorData = sensorData;
     }
 }

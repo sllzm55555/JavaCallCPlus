@@ -35,12 +35,13 @@ public class ProtocolContent {
     public ProtocolContent() {
     }
 
-    public ProtocolContent(int length, ControlField controlField, AddressField addressField, LinkData linkData, int checkSum) {
+    public ProtocolContent(int length, ControlField controlField, AddressField addressField, LinkData linkData, int checkSum, ExtraMessage extraMessage) {
         this.length = length;
         this.controlField = controlField;
         this.addressField = addressField;
         this.linkData = linkData;
         this.checkSum = checkSum;
+        this.extraMessage = extraMessage;
     }
 
     public ExtraMessage getExtraMessage() {

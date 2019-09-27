@@ -9,12 +9,6 @@ import orientIntelligent.jni.DFSLDataType.CS_addrField;
 
 public class CL1SetOpt extends CDFSLProOpt{
 
-    /*static {
-        //本地路径
-        //System.load("E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\DFSLProDemo.dll");
-        //VS路径
-        System.load("E:\\VS\\DFSLProDemo\\x64\\Debug\\DFSLProDemo.dll");
-    }*/
    // public native
     /**
      *
@@ -36,32 +30,27 @@ public class CL1SetOpt extends CDFSLProOpt{
     //bool (*set_userData_dataUnit_confirmOrDeny)(POptS THIS,uint16 Pn,E_ConfirmOrDeny Fn,U_userdata_confirmOrDeny target);
     //public native void set_userData_dataUnit_linkDetection_uplink(int DFSLProID,Cenumclass.E_LinkDetection linkDeteNum);
     public native boolean set_userData_dataUnit_confirmOrDeny(int DFSLProID,Cenumclass.E_Pn Pn,Cenumclass.E_ConfirmOrDeny Fn,CS_userdata_confirmOrDeny target);
+
+    //public native boolean set_userData_dataUnit_realTimeData_downlink(int DFSLProID,Cenumclass.E_Pn Pn,Cenumclass.E_rltdat Fn);
+
+    /**
+     *
+     * @param DFSLProID
+     * @param Pn 传感器类型
+     * @return
+     */
+    public native boolean set_userData_dataUnit_realTimeData_downlink(int DFSLProID,Cenumclass.E_Pn Pn);
+
     public native void set_userData_aux(int DFSLProID,byte ec1num_important ,byte ec2num_general,byte current_pfc,byte []password);
     public native void send_buf_server(int DFSLProID);
     public native byte[] serializeToBuf(int DFSLProID);
     void callbackWrite(byte[] bytes){
-        /*
-        try {
-            //dos.write(bytes);
-            System.out.println("[java send] length = " + bytes.length + ".");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         for (int i = 0; i < bytes.length; i++) {
             System.out.print("bytes:"+bytes[i]);
         }
-
-
         System.out.println("bytes.length:"+bytes.length);
-
-       // System.out.println("It`s OK:");
         return ;
-    };
-    void test()
-    {
-        System.out.println("hello test in");
     }
-
     public static boolean packageLinkDete(Cenumclass.E_ConfirmOrDeny Fn) {
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
         //step1 注册协议操作集和内存
@@ -129,6 +118,4 @@ public class CL1SetOpt extends CDFSLProOpt{
         tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
         return true;
     }
-
-
 }
