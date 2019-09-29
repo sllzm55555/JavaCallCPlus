@@ -1,5 +1,7 @@
 package orientIntelligent.entity;
 
+import orientIntelligent.jni.Cenumclass;
+
 /**
  * @author wt
  * @version 1.0.0
@@ -9,11 +11,31 @@ public class ControlField {
 
     private UpLink  up;
 
+    private Cenumclass.E_transDir direction;
+
+    private Cenumclass.E_ctlFunCode cfc;
+
     public ControlField(UpLink up) {
         this.up = up;
     }
 
     public ControlField() {
+    }
+
+    public Cenumclass.E_transDir getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Cenumclass.E_transDir direction) {
+        this.direction = direction;
+    }
+
+    public Cenumclass.E_ctlFunCode getCfc() {
+        return cfc;
+    }
+
+    public void setCfc(Cenumclass.E_ctlFunCode cfc) {
+        this.cfc = cfc;
     }
 
     public UpLink getUp() {

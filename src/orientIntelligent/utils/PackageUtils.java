@@ -69,14 +69,10 @@ public class PackageUtils {
 
         //设置地址域
         CS_addrField addrField = new CS_addrField();
-//        String serializableCode = packageEntity.getSerializableCode();
         String serializableCode = packProtocol.getAddressField().getSerializeCode();
         byte[] A4_SN = serializableCode.getBytes();
-//        int adminZoneCode = AdminZoneCode.getValueByName(packageEntity.getAdminZoneCode());
         int adminZoneCode = AdminZoneCode.getValueByName(packProtocol.getAddressField().getZoneCode());
-//        int robotModelCode = packageEntity.getRobotModelCode();
         int robotModelCode = Integer.valueOf(packProtocol.getAddressField().getRobotCode());
-//        byte countryCode = CountryCode.getValueByName(packageEntity.getCountyCode());
         byte countryCode = CountryCode.getValueByName(packProtocol.getAddressField().getCountryCode());
         addrField.set_A1_countcode(countryCode);
         addrField.set_A4_SN(A4_SN);
@@ -86,21 +82,16 @@ public class PackageUtils {
         addrField.set_adminZoneCode(zoneCode[0],zoneCode[1],zoneCode[2],zoneCode[3]);
         tmpL1SetOpt.set_addrField(DFSLProID,addrField);//设置到内存
         //控制域
-//        String direction = packageEntity.getDirection();
-        String direction = packProtocol.getDirection();
-
-        //byte tmpcfc = 0;
         boolean fcvBit = true;
         boolean fcbBit = true;
         //链路测试
 //        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST;
         //实时数据
-        Cenumclass.E_ctlFunCode cfc = Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT;
-        Cenumclass.E_transDir tmpDir = Cenumclass.E_transDir.getEnumByName(direction);
+        Cenumclass.E_ctlFunCode cfc = packProtocol.getControlField().getCfc();
+        Cenumclass.E_transDir tmpDir = packProtocol.getControlField().getDirection();
 
         tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, cfc);//设置到内存
         //应用层功能码
-//        Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.getEnumByName(packageEntity.getRequestType());
         Cenumclass.E_appFuncCode tmpafc = packProtocol.getLinkData().getApplicationFunctionCode();
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //设置数据单元
