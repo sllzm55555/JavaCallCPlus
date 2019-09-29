@@ -95,7 +95,7 @@ public class PackageUtils {
         Cenumclass.E_appFuncCode tmpafc = packProtocol.getLinkData().getApplicationFunctionCode();
         tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
         //设置数据单元
-        tmpL1SetOpt.set_userData_dataUnit_realTimeData_downlink(DFSLProID,Cenumclass.E_Pn.E_PN_WATERQUALITY);
+        tmpL1SetOpt.set_userData_dataUnit_realTimeData_downlink(DFSLProID, Cenumclass.E_Pn.getEnumByName(Cenumclass.E_Pn.getNameByVal((byte)(packProtocol.getLinkData().getDataUnitList().get(0).getPn()))));
 
 
 //        String isConfirm = packProtocol.getIsConfirm();
