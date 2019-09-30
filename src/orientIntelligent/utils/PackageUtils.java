@@ -24,7 +24,7 @@ public class PackageUtils {
 
 
     public static void main(String[] args) {
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+
         PackProtocolContent packProtocol = new PackProtocolContent();
         /*地址域
         序列号 行政区划码 机器型号 国家代码
@@ -49,11 +49,7 @@ public class PackageUtils {
          */
 //        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
-        byte[] bytes = packageData(packProtocol);
-        for (int i = 0; i < bytes.length; i++) {
-
-            System.out.print(" "+bytes[i]);
-        }
+        packageData(packProtocol);
 
     }
     public static byte[] packageData(PackProtocolContent packProtocol){
