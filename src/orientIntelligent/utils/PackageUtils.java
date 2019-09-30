@@ -22,7 +22,8 @@ public class PackageUtils {
     public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
 
     public static void main(String[] args) {
-
+        //E:\Idea\JavaCallCPlus\src\orientIntelligent\dll\DFSLProJni.dll
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
         PackProtocolContent packProtocol = new PackProtocolContent();
         /*地址域
         序列号 行政区划码 机器型号 国家代码
@@ -33,8 +34,11 @@ public class PackageUtils {
         帧传输方向,帧计数位,帧有效位, 链路层功能码
         帧计数位 帧有效位 链路层功能码 暂未设置
         */
-        packProtocol.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());
-
+        //packProtocol.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());
+        ControlField controlField = new ControlField();
+        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_LINKTEST);
+        controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER);
+        packProtocol.setControlField(controlField);
         /*
         应用层功能码
          */
@@ -47,7 +51,10 @@ public class PackageUtils {
          */
 //        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
 
-        packageData(packProtocol);
+        byte[] bytes = packageData(packProtocol);
+        for (int i = 0; i < bytes.length; i++) {
+            System.out.print(" "+bytes[i]);
+        }
 
     }
     public static byte[] packageData(PackProtocolContent packProtocol){
