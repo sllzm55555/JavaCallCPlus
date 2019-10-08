@@ -1,11 +1,13 @@
 package orientIntelligent.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wt
  * @version 1.0.0
  * @date 2019-09-20
  */
-public class PackProtocolContent extends ProtocolContent {
+public class PackProtocolContent extends ProtocolContent implements Serializable {
 
     private String direction;
     private String isConfirm;

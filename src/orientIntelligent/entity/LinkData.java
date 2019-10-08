@@ -2,6 +2,7 @@ package orientIntelligent.entity;
 
 import orientIntelligent.jni.Cenumclass;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @date 2019-09-11
  * 链路用户数据
  */
-public class LinkData {
+public class LinkData implements Serializable {
 
     /**
      * 应用层功能码

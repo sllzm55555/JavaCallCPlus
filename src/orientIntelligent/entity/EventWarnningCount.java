@@ -1,11 +1,13 @@
 package orientIntelligent.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wt
  * @version 1.0.0
  * @date 2019-09-19
  */
-public class EventWarnningCount {
+public class EventWarnningCount implements Serializable {
 
     private int importantEventCount;
     private int ordinaryEventCount;

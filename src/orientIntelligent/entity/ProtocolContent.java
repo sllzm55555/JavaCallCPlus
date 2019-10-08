@@ -1,11 +1,13 @@
 package orientIntelligent.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wt
  * @version 1.0.0
  * @date 2019-09-11
  */
-public class ProtocolContent {
+public class ProtocolContent implements Serializable {
 
     /**
      * 长度

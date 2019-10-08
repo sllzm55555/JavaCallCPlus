@@ -2,7 +2,9 @@ package orientIntelligent.entity;
 
 import orientIntelligent.jni.Cenumclass;
 
-public class SerializableField {
+import java.io.Serializable;
+
+public class SerializableField implements Serializable {
     /**
      * 时间标签
      */

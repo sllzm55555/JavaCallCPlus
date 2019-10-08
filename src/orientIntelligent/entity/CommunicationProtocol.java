@@ -2,12 +2,14 @@ package orientIntelligent.entity;
 
 import orientIntelligent.jni.Cenumclass;
 
+import java.io.Serializable;
+
 /**
  * @author wt
  * @version 1.0.0
  * @date 2019-09-11
  */
-public class CommunicationProtocol {
+public class CommunicationProtocol implements Serializable {
 
     /**
      * 状态码
