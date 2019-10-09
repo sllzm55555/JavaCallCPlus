@@ -489,6 +489,10 @@ public class Cenumclass {
             }
             return retStr;
         }
+        public static E_Pn getEnumByIntValue(int value){
+            String name = getNameByVal((byte) value);
+            return getEnumByName(name);
+        }
 
         public byte getValue() {
             return value;
@@ -536,6 +540,10 @@ public class Cenumclass {
                 }
             }
             return retStr;
+        }
+        public static E_ConfirmOrDeny getEnumByIntValue(int value){
+            String name = getNameByVal((byte) value);
+            return getEnumByName(name);
         }
     }
 

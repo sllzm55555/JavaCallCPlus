@@ -25,43 +25,30 @@ public class PackageUtils {
 
     public static void main(String[] args) {
 
-        PackProtocolContent packProtocol = new PackProtocolContent();
-        /*地址域
-        序列号 行政区划码 机器型号 国家代码
-        */
-        packProtocol.setAddressField(new AddressField("中国", "成都", "99", "123456"));
-
-        /*控制域
-        帧传输方向,帧计数位,帧有效位, 链路层功能码
-        帧计数位 帧有效位 链路层功能码 暂未设置
-        */
-        packProtocol.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER.name());
-
-        /*
-        应用层功能码
-         */
-        //链路检测
-//        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
-        //实时数据
-        packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_RLTDATA, null, null));
-        /*
-        设置数据单元
-         */
-//        packProtocol.setIsConfirm(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.name());
-
-        packageData(packProtocol);
+        ProtocolContent protocolContent = new ProtocolContent();
+        //地址域
+            //序列号 行政区划码 机器型号 国家代码
+            protocolContent.setAddressField(new AddressField("中国", "成都", "99", "123456"));
+        //控制域
+            //帧传输方向,帧计数位,帧有效位, 链路层功能码
+            //帧计数位 帧有效位 链路层功能码 暂未设置
+            ControlField controlField = new ControlField();
+            controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER);
+            protocolContent.setControlField(controlField);
+        //应用层功能码
+            //链路检测
+            //packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
+            //实时数据
+            protocolContent.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_RLTDATA, null, null));
+        //附加信息
+            ExtraMessage extraMessage = new ExtraMessage();
+            extraMessage.setAuthorization(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15});
+            protocolContent.setExtraMessage(extraMessage);
+        //打包
+        packageData(protocolContent);
 
     }
-    public static byte[] packageData(PackProtocolContent packProtocol){
-
-//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-//        try {
-//            //loadLib("MyMathLibForJava.dll");C:\Users\Administrator\AppData\Local\Temp\MyMathLibForJava.dll.dll
-//            loadLib("DFSLProDemo");
-//            //JOptionPane.showMessageDialog(null, "1234");
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(null, ex.getStackTrace());
-//        }
+    public static byte[] packageData(ProtocolContent protocolContent){
 
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
 
@@ -71,7 +58,7 @@ public class PackageUtils {
         //设置地址域
         CS_addrField addrField = new CS_addrField();
 
-        AddressField addressField = packProtocol.getAddressField();
+        AddressField addressField = protocolContent.getAddressField();
 
         if (addressField != null) {
             String serializableCode = addressField.getSerializeCode();
@@ -85,13 +72,14 @@ public class PackageUtils {
             addrField.set_tmladd(modeCode[0],modeCode[1]);
             byte[] zoneCode = BytesUtil.int2Bytes(adminZoneCode);
             addrField.set_adminZoneCode(zoneCode[0],zoneCode[1],zoneCode[2],zoneCode[3]);
-            tmpL1SetOpt.set_addrField(DFSLProID,addrField);//设置到内存
+            //设置到内存
+            tmpL1SetOpt.set_addrField(DFSLProID,addrField);
         }
         //控制域
         boolean fcvBit = true;
         boolean fcbBit = true;
         //实时数据
-        ControlField controlField = packProtocol.getControlField();
+        ControlField controlField = protocolContent.getControlField();
 
         Cenumclass.E_ctlFunCode cfc = null;
         Cenumclass.E_transDir tmpDir = null;
@@ -100,55 +88,70 @@ public class PackageUtils {
             tmpDir = controlField.getDirection();
         }
 
-        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir, fcvBit, fcbBit, cfc);//设置到内存
+        //设置到内存
+        tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir, fcvBit, fcbBit, cfc);
 
         //应用层功能码
-        LinkData linkData = packProtocol.getLinkData();
+        LinkData linkData = protocolContent.getLinkData();
         List<DataUnit> dataUnitList = linkData.getDataUnitList();
+        DataUnit dataUnit = null;
         if (dataUnitList != null) {
+            dataUnit = dataUnitList.get(0);
             Cenumclass.E_appFuncCode tmpafc = linkData.getApplicationFunctionCode();
             tmpL1SetOpt.set_userData_appFuncCode(DFSLProID,tmpafc);
             //设置数据单元[数据单元标识Pn+Fn 数据单元数据data]
-            String pnName = Cenumclass.E_Pn.getNameByVal((byte) (dataUnitList.get(0).getPn()));
-            tmpL1SetOpt.set_userData_dataUnit_realTimeData_downlink(DFSLProID, Cenumclass.E_Pn.getEnumByName(pnName));
+            tmpL1SetOpt.set_userData_dataUnit_realTimeData_downlink(DFSLProID, Cenumclass.E_Pn.getEnumByIntValue(dataUnit.getPn()));
         }
-        String isConfirm = packProtocol.getIsConfirm();
 
-        if (isConfirm != null) {
+        if (dataUnit != null) {
             CS_userdata_confirmOrDeny targetConfirmOrDeny = null;
-            Cenumclass.E_ConfirmOrDeny Fn = Cenumclass.E_ConfirmOrDeny.getEnumByName(isConfirm);
-            switch (Fn)
-            {
-                case E_CONDENY_CONFIRMALL://F1 全部确认 数据区为空
+            Cenumclass.E_ConfirmOrDeny fn = Cenumclass.E_ConfirmOrDeny.getEnumByIntValue(dataUnit.getFn());
+            switch (fn) {
+                //F1 全部确认 数据区为空
+                case E_CONDENY_CONFIRMALL:
                     break;
-                case E_CONDENY_GENERALDENY://F2 全部否认 数据区为空
+                //F2 全部否认 数据区为空
+                case E_CONDENY_GENERALDENY:
                     break;
-                case E_CONDENY_WRDATAUNITERR://F3 数据区带F3错误码
+                //F3 数据区带F3错误码
+                case E_CONDENY_WRDATAUNITERR:
                     //F3
                     targetConfirmOrDeny =
                             new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F3(Cenumclass.E_F3ErrNum.E_F3ERR_YES));
                     break;
-                case E_CONDENY_HARDWAREERR: //F4 硬件错误
-                    byte[] data = new byte[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-                    //########################################
+                //F4 硬件错误
+                case E_CONDENY_HARDWAREERR:
+                    byte[] data = dataUnit.getData().getBytes();
                     targetConfirmOrDeny =
                             new CS_userdata_confirmOrDeny( new CS_userdata_confirmOrDeny( ).new S_userdata_confirmOrDeny_F4(Cenumclass.E_F4ErrNum.E_F4ERR_CIPHERTEXTCHECK,data));
                     break;
+                default:
+                    break;
             }
-            boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_TERMAL, Fn,targetConfirmOrDeny);
+            boolean retSet =  tmpL1SetOpt.set_userData_dataUnit_confirmOrDeny(DFSLProID, Cenumclass.E_Pn.E_PN_TERMAL, fn,targetConfirmOrDeny);
             if(retSet == false)
             {
                 tmpL1SetOpt.unRegister_DFSLProOptS(DFSLProID);
                 return null;
             }
         }
-        /*设置附加信息
-        重要事件计数器 一般事件计数器 启动帧计数器 消息认证码
-         */
-        byte[] tmpPwd = new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//消息认证码
-        byte importantEventCount = (byte)0x6;//重要事件计数器
-        byte generalEventCount = (byte)0x6;//一般事件计数器
-        byte pfc = (byte)0x0;//启动帧计数器
+        //设置附加信息
+        //重要事件计数器 一般事件计数器 启动帧计数器 消息认证码
+        ExtraMessage extraMessage = protocolContent.getExtraMessage();
+        byte[] tmpPwd = new byte[0];
+        byte importantEventCount = 0;
+        byte generalEventCount = 0;
+        if (extraMessage != null) {
+            //消息认证码
+            tmpPwd = extraMessage.getAuthorization();
+            //重要事件计数器
+            importantEventCount = (byte) extraMessage.getEventWarnningCount().getImportantEventCount();
+            //一般事件计数器
+            generalEventCount = (byte) extraMessage.getEventWarnningCount().getOrdinaryEventCount();
+        }
+
+        //启动帧计数器
+        byte pfc = (byte)0x0;
         tmpL1SetOpt.set_userData_aux(DFSLProID,importantEventCount,generalEventCount,pfc,tmpPwd);
         //获取帧数据
         byte[] sendBuf = tmpL1SetOpt.serializeToBuf(DFSLProID);
