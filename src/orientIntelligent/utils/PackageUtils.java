@@ -11,6 +11,8 @@ import orientIntelligent.jni.jni_enum.AdminZoneCode;
 import orientIntelligent.jni.jni_enum.CountryCode;
 
 import java.io.*;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,30 +26,86 @@ public class PackageUtils {
 
 
     public static void main(String[] args) {
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        oldmain();
+    }
+
+    public static void newmain()
+    {
+        ProtocolContent protocolContent = new ProtocolContent();
+        //private ControlField controlField;
+        ControlField controlField = new ControlField();
+        //  1 private Cenumclass.E_transDir direction;
+        controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_REQUEST);
+        //  2 private Cenumclass.E_ctlFunCode cfc;
+        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT);
+        protocolContent.setControlField(controlField);
+        //private AddressField addressField;
+        AddressField addressField = new AddressField();
+        // 1 private String countryCode;
+        addressField.setCountryCode("86");
+        // 2 private String zoneCode;
+        addressField.setZoneCode("0830");
+        // 3 private String robotCode;
+        addressField.setRobotCode("a1");
+        // 4 private String serializeCode;
+        addressField.setSerializeCode("123456");
+        protocolContent.setAddressField(addressField);
+        //private LinkData linkData;
+        LinkData linkData = new LinkData();
+        // 1 private Cenumclass.E_appFuncCode applicationFunctionCode;
+        linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_RLTDATA);
+        // 2 private List<DataUnit> dataUnitList;
+        DataUnit dataUnit = new DataUnit();
+
+        dataUnit.setFn(Cenumclass.E_rltdat.E_RLTDAT_RESERVE.getValue());
+        dataUnit.setPn(Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
+        String tmpStr = "zxcvbnm";
+        dataUnit.setData(tmpStr);
+        List<DataUnit> unitList = new ArrayList<>();
+        unitList.add(dataUnit);
+        linkData.setDataUnitList(unitList);
+        protocolContent.setLinkData(linkData);
+        //private ExtraMessage extraMessage;
+        // 1 private byte[] authorization;
+        ExtraMessage extraMessage = new ExtraMessage();
+        byte[] authorization = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        extraMessage.setAuthorization(authorization);
+        protocolContent.setExtraMessage(extraMessage);
+        CL1SetOpt cl1SetOpt = new CL1SetOpt();
+        byte[] message = cl1SetOpt.packageMessage(protocolContent);
+        if(message!=null)
+            System.out.print("message.length: "+message.length);
+    }
+
+    public static void oldmain()
+    {
+
 
         ProtocolContent protocolContent = new ProtocolContent();
         //地址域
-            //序列号 行政区划码 机器型号 国家代码
-            protocolContent.setAddressField(new AddressField("中国", "成都", "99", "123456"));
+        //序列号 行政区划码 机器型号 国家代码
+        protocolContent.setAddressField(new AddressField("中国", "成都", "99", "123456"));
         //控制域
-            //帧传输方向,帧计数位,帧有效位, 链路层功能码
-            //帧计数位 帧有效位 链路层功能码 暂未设置
-            ControlField controlField = new ControlField();
-            controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER);
-            protocolContent.setControlField(controlField);
+        //帧传输方向,帧计数位,帧有效位, 链路层功能码
+        //帧计数位 帧有效位 链路层功能码 暂未设置
+        ControlField controlField = new ControlField();
+        controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER);
+        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT);
+        protocolContent.setControlField(controlField);
         //应用层功能码
-            //链路检测
-            //packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
-            //实时数据
-            protocolContent.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_RLTDATA, null, null));
+        //链路检测
+        //packProtocol.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_LKDT, null, null));
+        //实时数据
+        protocolContent.setLinkData(new LinkData(Cenumclass.E_appFuncCode.E_AFC_RLTDATA, null, null));
         //附加信息
-            ExtraMessage extraMessage = new ExtraMessage();
-            extraMessage.setAuthorization(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15});
-            protocolContent.setExtraMessage(extraMessage);
+        ExtraMessage extraMessage = new ExtraMessage();
+        extraMessage.setAuthorization(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15});
+        protocolContent.setExtraMessage(extraMessage);
         //打包
-        packageData(protocolContent);
-
+        byte[] bytes = packageData(protocolContent);
     }
+
     public static byte[] packageData(ProtocolContent protocolContent){
 
         CL1SetOpt tmpL1SetOpt = new CL1SetOpt();
@@ -145,9 +203,9 @@ public class PackageUtils {
             //消息认证码
             tmpPwd = extraMessage.getAuthorization();
             //重要事件计数器
-            importantEventCount = (byte) extraMessage.getEventWarnningCount().getImportantEventCount();
+//            importantEventCount = (byte) extraMessage.getEventWarnningCount().getImportantEventCount();
             //一般事件计数器
-            generalEventCount = (byte) extraMessage.getEventWarnningCount().getOrdinaryEventCount();
+//            generalEventCount = (byte) extraMessage.getEventWarnningCount().getOrdinaryEventCount();
         }
 
         //启动帧计数器

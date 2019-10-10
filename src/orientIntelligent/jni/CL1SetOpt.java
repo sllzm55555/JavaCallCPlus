@@ -1,5 +1,6 @@
 package orientIntelligent.jni;
 
+import orientIntelligent.entity.ProtocolContent;
 import orientIntelligent.jni.DFSLDataType.CEvent;
 import orientIntelligent.jni.DFSLDataType.CS_A16;
 import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
@@ -44,6 +45,7 @@ public class CL1SetOpt extends CDFSLProOpt{
     public native void set_userData_aux(int DFSLProID,byte ec1num_important ,byte ec2num_general,byte current_pfc,byte []password);
     public native void send_buf_server(int DFSLProID);
     public native byte[] serializeToBuf(int DFSLProID);
+    public native byte[] packageMessage(ProtocolContent protocolContent);
     void callbackWrite(byte[] bytes){
         for (int i = 0; i < bytes.length; i++) {
             System.out.print("bytes:"+bytes[i]);
@@ -74,7 +76,9 @@ public class CL1SetOpt extends CDFSLProOpt{
         boolean fcvBit = true;
         boolean fcbBit = true;
         //########################################
+
         tmpL1SetOpt.set_ctlFieldC_all(DFSLProID, tmpDir,fcvBit,fcbBit, tmpcfc);//设置到内存
+
         //step4 set_userData_appFuncCode
         //########################################设置参数
         Cenumclass.E_appFuncCode tmpafc = Cenumclass.E_appFuncCode.E_AFC_LKDT;

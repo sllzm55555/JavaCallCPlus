@@ -223,7 +223,7 @@ public class CCommunicate {
 
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
-            CommunicationProtocol parseMessage = com.parse_message(imu);
+            CommunicationProtocol parseMessage = com.parse_message(login);
             int as;
             System.out.println(parseMessage.getMessage());
         }
