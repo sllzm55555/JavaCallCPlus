@@ -36,9 +36,9 @@ public class PackageUtils {
         //private ControlField controlField;
         ControlField controlField = new ControlField();
         //  1 private Cenumclass.E_transDir direction;
-        controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_REQUEST);
+        controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_ANSWER);
         //  2 private Cenumclass.E_ctlFunCode cfc;
-        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT);
+        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_S_LINKSTATE);
         protocolContent.setControlField(controlField);
         //private AddressField addressField;
         AddressField addressField = new AddressField();
@@ -54,13 +54,14 @@ public class PackageUtils {
         //private LinkData linkData;
         LinkData linkData = new LinkData();
         // 1 private Cenumclass.E_appFuncCode applicationFunctionCode;
-        linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_RLTDATA);
+        linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_CONDENY);
         // 2 private List<DataUnit> dataUnitList;
         DataUnit dataUnit = new DataUnit();
 
-        dataUnit.setFn(Cenumclass.E_rltdat.E_RLTDAT_RESERVE.getValue());
-        dataUnit.setPn(Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
-        String tmpStr = "zxcvbnm";
+        dataUnit.setFn(Cenumclass.E_ConfirmOrDeny.E_CONDENY_CONFIRMALL.getValue());
+        dataUnit.setPn(Cenumclass.E_Pn.E_PN_TERMAL.getValue());
+       // String tmpStr = "zxcvbnm";
+        String tmpStr = "1";
         dataUnit.setData(tmpStr);
         List<DataUnit> unitList = new ArrayList<>();
         unitList.add(dataUnit);
