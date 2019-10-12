@@ -27,7 +27,7 @@ public class PackageUtils {
 
     public static void main(String[] args) {
         System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-        oldmain();
+        newmain();
     }
 
     public static void newmain()
@@ -74,14 +74,14 @@ public class PackageUtils {
         protocolContent.setExtraMessage(extraMessage);
         CL1SetOpt cl1SetOpt = new CL1SetOpt();
         byte[] message = cl1SetOpt.packageMessage(protocolContent);
-        if(message!=null)
-            System.out.print("message.length: "+message.length);
+//        cl1SetOpt.packageMessage(protocolContent);
+        if(message==null)
+            return;
+        System.out.println("message.length: "+message.length);
     }
 
     public static void oldmain()
     {
-
-
         ProtocolContent protocolContent = new ProtocolContent();
         //地址域
         //序列号 行政区划码 机器型号 国家代码
