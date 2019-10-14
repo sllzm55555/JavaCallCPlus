@@ -2,7 +2,8 @@ package orientIntelligent.utils;
 
 import orientIntelligent.entity.CommunicationProtocol;
 import orientIntelligent.entity.ProtocolContent;
-import orientIntelligent.jni.CCommunicate;
+
+import orientIntelligent.jni.CL1GetOpt;
 import orientIntelligent.jni.CL1SetOpt;
 
 /**
@@ -19,7 +20,7 @@ public class ProtocolUtils {
     }
 
     public static CommunicationProtocol unpackMessage(byte[] message){
-        return new CCommunicate().parse_message(message);
+        return new CL1GetOpt().parse_message(message);
     }
 
 }
