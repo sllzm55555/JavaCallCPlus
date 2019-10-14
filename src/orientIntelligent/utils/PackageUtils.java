@@ -26,7 +26,7 @@ public class PackageUtils {
 
 
     public static void main(String[] args) {
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         newmain();
     }
 
