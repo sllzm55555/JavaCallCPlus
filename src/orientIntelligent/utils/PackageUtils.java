@@ -26,11 +26,13 @@ public class PackageUtils {
 
 
     public static void main(String[] args) {
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
-        newmain();
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        PackageUtils packageUtils = new PackageUtils();
+        packageUtils.newmain();
+        packageUtils.newmain();
     }
 
-    public static void newmain()
+    public  void newmain()
     {
         ProtocolContent protocolContent = new ProtocolContent();
         //private ControlField controlField;
@@ -259,7 +261,6 @@ public class PackageUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         System.load(extractedLibFile.toString());
     }

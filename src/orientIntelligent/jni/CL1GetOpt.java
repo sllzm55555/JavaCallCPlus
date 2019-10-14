@@ -1,28 +1,94 @@
 package orientIntelligent.jni;
-import orientIntelligent.jni.DFSLDataType.*;
 
-import orientIntelligent.jni.DFSLDataType.CEvent;
-import orientIntelligent.jni.DFSLDataType.CS_A16;
-import orientIntelligent.jni.DFSLDataType.CS_A1;
+import orientIntelligent.entity.CommunicationProtocol;
 
-public class CL1GetOpt extends CDFSLProOpt {
-    //帧结构解析代码
-    public native Cenumclass.E_CheckPackage check_package(int DFSLProID,byte[] bytes);  //帧完整性检查
-    public native byte[]  get_userData_dataUnit_pwd(int DFSLProID);                     //获取消息验证码
-    public native CS_A16 get_userData_dataUnit_time(int DFSLProID );                   //获取组帧时间
-    public native CEvent get_userData_dataUnit_events(int DFSLProID);                   //获取事件计数器
-    public native Cenumclass.E_ctlFunCode get_ctlField_CFFuncCode(int DFSLProID);       //获取链路层功能码
-    public native boolean get_ctlFieldC_CON(int DFSLProID);                             //获取回复标志位
-    public native Cenumclass.E_transDir get_ctlField_DIR(int DFSLProID);                //获取帧传输方向
-    public native Cenumclass.E_appFuncCode get_userData_appFuncCode(int DFSLProID);     //获取应用层功能码
+public class CL1GetOpt {
 
-    public native int    get_userData_dataUnit_size	(int DFSLProID);
-    public native int    get_userData_dataUnit_offset(int DFSLProID);
-   // public native void   freeBufRecv					(int DFSLProID);
-    public native short get_userData_DT			(int DFSLProID);
-    public native short get_userData_DA			(int DFSLProID);
+    static{
+//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+    }
+    public   native CommunicationProtocol parse_message(byte[] bytes);
 
-    //用户数据区解析代码
-    public native Cenumclass.E_LinkDetection get_userData_dataUnit_linkDetection_uplink(int DFSLProID,CS_A1 hearbeat);
+
+
+    public static void main(String[] args) {
+
+        byte hearbeat[] = {0x68 ,0x14 ,0x00 ,0x14 ,0x00 ,0x68 ,(byte)0xD9 ,(byte)0x86 ,0x30 ,0x08  ,0x00 ,0x56 ,0x34 ,0x12 ,0x02 ,0x70 ,0x00 ,0x00 ,0x04 ,0x00
+                ,0x39 ,0x30 ,0x10 ,0x09 ,(byte)0x91 ,0x19 ,0x63 ,0x16};
+        //登录帧
+        byte login[] = {0x68,0x0E ,0x00 ,0x0E ,0x00 ,0x68 ,(byte)0xD9 ,(byte)0x86 ,0x30 ,0x08  ,0x00 ,0x56 ,0x34 ,0x12 ,0x02 ,0x70 ,0x00 ,0x00 ,0x01 ,0x00
+                ,0x34 ,0x16};
+
+        byte logout[] = {0x68 ,0x0E ,0x00 ,0x0E ,0x00 ,0x68 ,(byte)0xD9 ,(byte)0x86 ,0x30 ,0x08  ,0x00 ,0x56 ,0x34 ,0x12 ,0x02 ,0x70 ,0x00 ,0x00 ,0x02 ,0x00
+                ,0x35 ,0x16};
+        /**
+         * 水质
+         */
+        byte realTimeData[] = {0x68 ,0x54 ,0x00 ,0x54 ,0x00 ,0x68 ,(byte)0xB8 ,(byte)0x86 ,0x30 ,0x08  ,(byte)0x1A ,0x56 ,0x34 ,0x12 ,(byte)0x0C ,(byte)0xE0 ,0x01 ,0x01 ,0x04 ,0x16
+                ,0x21 ,0x43 ,0x01 ,0x01 ,0x08 ,0x16 ,0x23 ,0x11 ,0x32 ,0x54  ,0x01 ,0x01 ,0x10 ,0x16 ,0x23 ,0x01 ,0x01 ,0x01 ,0x20 ,0x16
+                ,0x12 ,0x21 ,0x43 ,0x01 ,0x01 ,0x40 ,0x16 ,0x21 ,0x43 ,0x01  ,0x01 ,(byte)0x80 ,0x16 ,0x12 ,0x21 ,0x43 ,0x01 ,0x01 ,0x01 ,0x17
+                ,0x12 ,0x21 ,0x43 ,0x01 ,0x01 ,0x02 ,0x17 ,0x21 ,0x43 ,0x65  ,0x01 ,0x01 ,0x04 ,0x17 ,0x23 ,0x01 ,0x01 ,0x01 ,0x08 ,0x17
+                ,0x23 ,0x01 ,0x08 ,0x54 ,0x50 ,0x16 ,0x26 ,0x00 ,0x06 ,0x06  ,0x38 ,0x16};
+        /**
+         * IMU
+         */
+        byte imu[] = {   0x68 ,0x2E ,0x00 ,0x2E ,0x00 ,0x68 ,(byte)0xB8 ,(byte)0x86 ,0x30 ,0x08
+                        ,0x1A ,0x56 ,0x34 ,0x12 ,0x0C ,(byte)0xE0 ,0x04 ,0x01 ,0x04 ,0x18
+                        ,0x12 ,0x21 ,0x43 ,0x04 ,0x01 ,0x08 ,0x18 ,0x12 ,0x21 ,0x43
+                        ,0x04 ,0x01 ,0x10 ,0x18 ,0x12 ,0x21 ,0x43 ,0x04 ,0x01 ,0x20
+                        ,0x18 ,0x21 ,0x43 ,(byte)0xA1 ,0x08 ,0x18 ,0x31 ,0x09 ,0x29 ,0x00
+                        ,0x06 ,0x06 ,(byte)0xD2 ,0x16};
+
+        byte[] recvFram = null;
+        int lenRecvFram;
+        int port = 9998;
+
+/*        try {
+            //创建绑定到特定端口的服务器套接字  1-65535
+            ServerSocket serversocket = new ServerSocket(port);
+            while(true) {
+                //建立连接，获取socket对象
+                System.out.println("server将一直等待连接的到来");
+                Socket socket=serversocket.accept();
+
+                //消息提示框
+                JOptionPane.showMessageDialog(null, "有客户端连接到了本机9998端口哦");
+                //与客户端通信
+
+                // 建立好连接后，从socket中获取输入流，并建立缓冲区进行读取
+                InputStream inputStream = socket.getInputStream();
+                byte[] bytes = new byte[1024];
+                int len;
+                if((len = inputStream.read(bytes)) > 0)
+                {
+                    recvFram = new byte[len];
+                    for (int i = 0; i < len; i++) {
+                        recvFram[i]=bytes[i];
+                    }
+                }
+                inputStream.close();
+                socket.close();
+                serversocket.close();
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        CL1GetOpt com =  new CL1GetOpt();
+        if(hearbeat!=null) {
+
+            //com.parse_msg_server(recvFram);
+            System.out.println("->DEBUG:");
+            CommunicationProtocol parseMessage = com.parse_message(realTimeData);
+            int as;
+            System.out.println(parseMessage.getMessage());
+        }
+        else
+        {
+            System.out.println("parseMessage is empty");
+        }
+    }
 
 }
