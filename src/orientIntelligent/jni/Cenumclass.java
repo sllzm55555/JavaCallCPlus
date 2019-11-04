@@ -686,5 +686,46 @@ public class Cenumclass {
             return retStr;
         }
     }
+
+    public enum set_param{
+        E_SETPAR_MASIPPORT((byte)3), //主站IP和端口
+        E_SETPAR_TMLIPPORT((byte)7), //终端IP和端口
+        E_SETPAR_ERR((byte)0xff); //错误
+
+        private byte value;
+
+
+        set_param(byte value) {
+        }
+
+        public byte getValue() {
+            return value;
+        }
+
+        public static set_param getEnumByName(String name){
+            set_param[] values = set_param.values();
+            for (set_param code : values) {
+                if(name.equals(code.name())){
+                    return code;
+                }
+            }
+            return null;
+        }
+
+        public static String getNameByVal(byte val)
+        {
+            String retStr = "";
+            for (set_param e : set_param.values()) {
+                // System.out.println(e.toString());
+                if(val == e.getValue())
+                {
+                    //System.out.println("name:"+e.name());
+                    retStr = e.name();
+                }
+            }
+            return retStr;
+        }
+
+    }
 }
 
