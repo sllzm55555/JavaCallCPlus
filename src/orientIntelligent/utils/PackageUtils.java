@@ -5,13 +5,8 @@ import orientIntelligent.entity.AddressField;
 import orientIntelligent.entity.LinkData;
 import orientIntelligent.jni.CL1SetOpt;
 import orientIntelligent.jni.Cenumclass;
-import orientIntelligent.jni.DFSLDataType.CS_addrField;
-import orientIntelligent.jni.DFSLDataType.CS_userdata_confirmOrDeny;
-import orientIntelligent.jni.jni_enum.AdminZoneCode;
-import orientIntelligent.jni.jni_enum.CountryCode;
 
 import java.io.*;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +16,18 @@ import java.util.List;
  * @date 2019-09-16
  */
 public class PackageUtils {
-
+    static String masterIpFormat = "IP:%s port:%s IP:%s port:%s,APN:%s";
     public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
 
 
     public static void main(String[] args) {
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         PackageUtils packageUtils = new PackageUtils();
       //  packageUtils.newmain();
       //  packageUtils.newmain();
-//        packageUtils.queryParameter();
+//        packageUtils.setParameter();
         packageUtils.queryParameter();
     }
 
@@ -67,12 +64,12 @@ public class PackageUtils {
         // String tmpStr = "zxcvbnm";
         //"IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
 //        String tmpStr = "IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
-        String temp = "IP:%s port:%s IP:%s port:%s,APN:%s";
-        temp = String.format(temp, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
+//        String temp = "IP:%s port:%s IP:%s port:%s,APN:%s";
+        masterIpFormat = String.format(masterIpFormat, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
 
-        System.out.println(temp);
+        System.out.println(masterIpFormat);
 
-        dataUnit.setData(temp);
+        dataUnit.setData(masterIpFormat);
         List<DataUnit> unitList = new ArrayList<>();
         unitList.add(dataUnit);
         linkData.setDataUnitList(unitList);
