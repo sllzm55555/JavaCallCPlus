@@ -27,8 +27,8 @@ public class PackageUtils {
         PackageUtils packageUtils = new PackageUtils();
       //  packageUtils.newmain();
       //  packageUtils.newmain();
-        packageUtils.setParameter();
-//        packageUtils.queryParameter();
+//        packageUtils.setParameter();
+        packageUtils.queryParameter();
     }
 
     public  void setParameter()
