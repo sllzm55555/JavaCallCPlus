@@ -9,8 +9,8 @@ public class CL1GetOpt {
 
 
     public static void main(String[] args) {
-//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         byte hearbeat[] = {0x68 ,0x14 ,0x00 ,0x14 ,0x00 ,0x68 ,(byte)0xD9 ,(byte)0x86 ,0x30 ,0x08  ,0x00 ,0x56 ,0x34 ,0x12 ,0x02 ,0x70 ,0x00 ,0x00 ,0x04 ,0x00
                 ,0x39 ,0x30 ,0x10 ,0x09 ,(byte)0x91 ,0x19 ,0x63 ,0x16};
         //登录帧
@@ -78,7 +78,7 @@ public class CL1GetOpt {
 
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
-            CommunicationProtocol parseMessage = com.parse_message(realTimeData);
+            CommunicationProtocol parseMessage = com.parse_message(hearbeat);
             int as;
             System.out.println(parseMessage.getMessage());
         }

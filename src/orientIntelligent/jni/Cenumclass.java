@@ -687,7 +687,7 @@ public class Cenumclass {
         }
     }
 
-    public enum set_param{
+    public enum E_setParameter{
         E_SETPAR_MASIPPORT((byte)3), //主站IP和端口
         E_SETPAR_TMLIPPORT((byte)7), //终端IP和端口
         E_SETPAR_ERR((byte)0xff); //错误
@@ -695,16 +695,17 @@ public class Cenumclass {
         private byte value;
 
 
-        set_param(byte value) {
+        E_setParameter(byte value) {
+            this.value = value;
         }
 
         public byte getValue() {
             return value;
         }
 
-        public static set_param getEnumByName(String name){
-            set_param[] values = set_param.values();
-            for (set_param code : values) {
+        public static E_setParameter getEnumByName(String name){
+            E_setParameter[] values = E_setParameter.values();
+            for (E_setParameter code : values) {
                 if(name.equals(code.name())){
                     return code;
                 }
@@ -715,7 +716,7 @@ public class Cenumclass {
         public static String getNameByVal(byte val)
         {
             String retStr = "";
-            for (set_param e : set_param.values()) {
+            for (E_setParameter e : E_setParameter.values()) {
                 // System.out.println(e.toString());
                 if(val == e.getValue())
                 {
