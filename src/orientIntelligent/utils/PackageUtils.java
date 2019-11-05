@@ -26,12 +26,12 @@ public class PackageUtils {
 
 
     public static void main(String[] args) {
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         PackageUtils packageUtils = new PackageUtils();
       //  packageUtils.newmain();
       //  packageUtils.newmain();
 //        packageUtils.queryParameter();
-        packageUtils.setParameter();
+        packageUtils.queryParameter();
     }
 
     public  void setParameter()
@@ -66,8 +66,13 @@ public class PackageUtils {
         dataUnit.setPn(Cenumclass.E_Pn.E_PN_TERMAL.getValue());
         // String tmpStr = "zxcvbnm";
         //"IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
-        String tmpStr = "IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";;
-        dataUnit.setData(tmpStr);
+//        String tmpStr = "IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
+        String temp = "IP:%s port:%s IP:%s port:%s,APN:%s";
+        temp = String.format(temp, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
+
+        System.out.println(temp);
+
+        dataUnit.setData(temp);
         List<DataUnit> unitList = new ArrayList<>();
         unitList.add(dataUnit);
         linkData.setDataUnitList(unitList);
