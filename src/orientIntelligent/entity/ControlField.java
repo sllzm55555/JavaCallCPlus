@@ -44,7 +44,7 @@ public class ControlField implements Serializable {
         return up;
     }
 
-    public class UpLink {
+    public class UpLink implements Serializable {
         private int dir;
         private int prm;
         private int acd;

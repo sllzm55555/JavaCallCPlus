@@ -16,13 +16,16 @@ import java.util.List;
  * @date 2019-09-16
  */
 public class PackageUtils {
-    static String masterIpFormat = "IP:%s port:%s IP:%s port:%s,APN:%s";
+    private static String masterIpFormat = "IP:%s port:%s IP:%s port:%s,APN:%s";
     public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
 
+    public static String getMasterIpFormat() {
+        return masterIpFormat;
+    }
 
     public static void main(String[] args) {
-//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
 //        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         PackageUtils packageUtils = new PackageUtils();
       //  packageUtils.newmain();
