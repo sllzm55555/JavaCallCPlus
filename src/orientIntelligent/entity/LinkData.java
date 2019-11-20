@@ -24,16 +24,16 @@ public class LinkData implements Serializable {
     /**
      * 数据单元
      */
-    private List<DataUnit> dataUnitList;
+    private List<Data> dataList;
 
     public LinkData() {
     }
 
-    public LinkData(Cenumclass.E_appFuncCode applicationFunctionCode, SerializableField serializableField, List<DataUnit> dataUnitList) {
+    public LinkData(Cenumclass.E_appFuncCode applicationFunctionCode, SerializableField serializableField, List<Data> data) {
 
         this.applicationFunctionCode = applicationFunctionCode;
         this.serializableField = serializableField;
-        this.dataUnitList = dataUnitList;
+        this.dataList = data;
     }
 
     public Cenumclass.E_appFuncCode getApplicationFunctionCode() {
@@ -52,11 +52,11 @@ public class LinkData implements Serializable {
         this.serializableField = serializableField;
     }
 
-    public List<DataUnit> getDataUnitList() {
-        return dataUnitList;
+    public List<Data> getDataList() {
+        return dataList;
     }
 
-    public void setDataUnitList(List<DataUnit> dataUnitList) {
-        this.dataUnitList = dataUnitList;
+    public void setDataList(List<Data> dataList) {
+        this.dataList = dataList;
     }
 }
