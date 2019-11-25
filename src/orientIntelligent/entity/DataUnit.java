@@ -19,7 +19,11 @@ public class DataUnit implements Serializable {
      * "1.234"  "12.34"  "123.4"  "1234"  "X" ..."XXX.XXXXXXX"
      */
 //    private String sensorData;
-
+    /**
+     * 下行 Td_c/Td_d/Td_m {"timeFlag":{"min":mValue,"hour":hValue,"day":dValue,"mon":mValue,"year":yValue},"density":val,"points":val}
+     * str = "timeFlag":{"min":mValue,"hour":hValue,"day":dValue,"mon":mValue,"year":yValue}
+     * 上行 [ {str,"Fs1":val,"Fs2":val,"Fs3":val ...},{},{},{},...]
+     */
     private String data;
 
     public DataUnit() {

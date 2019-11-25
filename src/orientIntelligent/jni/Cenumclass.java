@@ -51,21 +51,22 @@ public class Cenumclass {
         /*#######################################################################################*/
         /*#######################################################################################*/
         ///*经纬度*/
-        E_RLTDAT_LONGITUDE      ((byte)209),	//经度 longitude
-        E_RLTDAT_LATITUDE       ((byte)210),	//纬度 latitude
+        E_RLTDAT_LONGANDLAT((byte)209),
+//        E_RLTDAT_LONGITUDE      ((byte)209),	//经度 longitude
+//        E_RLTDAT_LATITUDE       ((byte)210),	//纬度 latitude
         /*#######################################################################################*/
         /*清污机构*/
-        E_RLTDAT_RMVCONTAMINATION((byte)211),	//removal of contamination 清污量
+        E_RLTDAT_RMVCONTAMINATION((byte)210),	//removal of contamination 清污量
         /*#######################################################################################*/
         /*电机*/
-        E_RLTDAT_MOTORPOWER     ((byte)212),	//motor power电机功率
-        E_RLTDAT_MOTORSPEED     ((byte)213),	//motor speed电机转速
-        E_RLTDAT_MOTORVOLTAGE   ((byte)214),	//motor voltage 电机电压
+        E_RLTDAT_MOTORPOWER     ((byte)211),	//motor power电机功率
+        E_RLTDAT_MOTORSPEED     ((byte)212),	//motor speed电机转速
+        E_RLTDAT_MOTORVOLTAGE   ((byte)213),	//motor voltage 电机电压
         /*#######################################################################################*/
         /*版本信息*/
-        E_RLTDAT_FIRMWAREVERSION((byte)215),	//硬件固件版本
-        E_RLTDAT_SOFTWAREVERSION((byte)216),	//软件版本
-        E_RLTDAT_RESERVE        ((byte)217);	//
+        E_RLTDAT_FIRMWAREVERSION((byte)214),	//硬件固件版本
+        E_RLTDAT_SOFTWAREVERSION((byte)215),	//软件版本
+        E_RLTDAT_RESERVE        ((byte)216);	//
 
         private byte value;
 
