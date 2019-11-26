@@ -151,8 +151,9 @@ public class Cenumclass {
         /*#######################################################################################*/
         /*#######################################################################################*/
         ///*经纬度*/
-        E_HISDAT_LONGITUDE      ((byte)209),	//经度 longitude
-        E_HISDAT_LATITUDE       ((byte)210),	//纬度 latitude
+        E_RLTDAT_LONGANDLAT((byte)209),
+//        E_HISDAT_LONGITUDE      ((byte)209),	//经度 longitude
+//        E_HISDAT_LATITUDE       ((byte)210),	//纬度 latitude
         /*#######################################################################################*/
         /*清污机构*/
         E_HISDAT_RMVCONTAMINATION((byte)211),	//removal of contamination 清污量
