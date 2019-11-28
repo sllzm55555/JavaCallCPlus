@@ -9,8 +9,11 @@ public class CL1GetOpt {
 
 
     public static void main(String[] args) {
-        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+//        System.load("E:\\VS\\DFSLPro\\pthread\\Pre-built.2\\lib\\x64\\pthreadVC2.dll");
+//        System.load("E:\\VS\\DFSLPro\\pthread\\Pre-built.2\\dll\\x64\\pthreadVC2.dll");
+//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
+        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         byte hearbeat[] = {
                 (byte)0x68 ,(byte)0x18 ,(byte)0x00 ,(byte)0x18 ,(byte)0x00 ,(byte)0x68 ,(byte)0x5B ,(byte)0x86 ,(byte)0x08 ,(byte)0x30,
                 (byte)0xA1 ,(byte)0x12 ,(byte)0x34 ,(byte)0x56 ,(byte)0x0A ,(byte)0xF0 ,(byte)0x00 ,(byte)0x00 ,(byte)0x00 ,(byte)0x03,
