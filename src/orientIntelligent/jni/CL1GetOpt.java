@@ -9,7 +9,6 @@ public class CL1GetOpt {
 
 
     public static void main(String[] args) {
-//        System.load("E:\\VS\\DFSLPro\\pthread\\Pre-built.2\\lib\\x64\\pthreadVC2.dll");
 //        System.load("E:\\VS\\DFSLPro\\pthread\\Pre-built.2\\dll\\x64\\pthreadVC2.dll");
 //        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
         System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
