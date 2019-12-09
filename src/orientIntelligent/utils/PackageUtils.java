@@ -24,8 +24,10 @@ public class PackageUtils {
     }
 
     public static void main(String[] args) {
-        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
-//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        //E:\VS\DFSLPro\x64\Debug
+        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
 //        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         PackageUtils packageUtils = new PackageUtils();
       //  packageUtils.newmain();
