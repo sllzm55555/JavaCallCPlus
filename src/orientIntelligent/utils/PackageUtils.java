@@ -53,7 +53,7 @@ public class PackageUtils {
         // 2 private String zoneCode;
         addressField.setZoneCode("0830");
         // 3 private String robotCode;
-        addressField.setRobotCode("a1");
+        addressField.setRobotCode("01");
         // 4 private String serializeCode;
         addressField.setSerializeCode("123456");
         protocolContent.setAddressField(addressField);
