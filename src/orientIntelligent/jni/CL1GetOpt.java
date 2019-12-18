@@ -117,7 +117,7 @@ public class CL1GetOpt {
 
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
-            for (int i = 0; i < 10000000; i++) {
+            for (int i = 0; i < 1; i++) {
                 CommunicationProtocol parseMessage = com.parse_message(login2);//hearbeat
                 System.out.println(i);
             }
