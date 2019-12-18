@@ -117,15 +117,16 @@ public class CL1GetOpt {
 
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
-//            CommunicationProtocol parseMessage = com.parse_message(login);
-//            CommunicationProtocol parseMessage = com.parse_message(query);//hearbeat
-            CommunicationProtocol parseMessage = com.parse_message(login2);//hearbeat
+            for (int i = 0; i < 10000000; i++) {
+                CommunicationProtocol parseMessage = com.parse_message(login2);//hearbeat
+                System.out.println(i);
+            }
             int as;
-            System.out.println(parseMessage.getMessage());
+//            System.out.println(parseMessage.getMessage());
         }
         else
         {
-            System.out.println("parseMessage is empty");
+//            System.out.println("parseMessage is empty");
         }
     }
 

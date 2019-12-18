@@ -27,12 +27,14 @@ public class PackageUtils {
 //        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         //E:\VS\DFSLPro\x64\Debug
         System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
-//        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
+//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
         PackageUtils packageUtils = new PackageUtils();
-      //  packageUtils.newmain();
-      //  packageUtils.newmain();
-        packageUtils.setParameter();
+        for (int i = 0; i < 10000000; i++) {
+            packageUtils.setParameter();
+            System.out.println(i);
+        }
+
 //        packageUtils.queryParameter();
     }
 
@@ -72,7 +74,7 @@ public class PackageUtils {
 //        String temp = "IP:%s port:%s IP:%s port:%s,APN:%s";
         masterIpFormat = String.format(masterIpFormat, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
 
-        System.out.println(masterIpFormat);
+//        System.out.println(masterIpFormat);
 
         dataUnit.setData(masterIpFormat);
         List<DataUnit> unitList = new ArrayList<>();
@@ -90,7 +92,7 @@ public class PackageUtils {
 //        cl1SetOpt.packageMessage(protocolContent);
         if(message==null)
             return;
-        System.out.println("message.length: "+message.length);
+//        System.out.println("message.length: "+message.length);
     }
 
     public  void queryParameter()
