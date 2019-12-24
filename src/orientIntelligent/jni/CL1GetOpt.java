@@ -76,7 +76,12 @@ public class CL1GetOpt {
                 (byte)0x43 ,(byte)0xA1 ,(byte)0x16 ,(byte)0x10 ,(byte)0x21 ,(byte)0x11 ,(byte)0x19 ,(byte)0x0A ,(byte)0x02 ,(byte)0x21  ,(byte)0x43 ,(byte)0xA1 ,(byte)0x00 ,(byte)0x05 ,(byte)0x40 ,(byte)0x13 ,(byte)0x25 ,(byte)0x00 ,(byte)0x06 ,(byte)0x06,
                 (byte)0xED ,(byte)0x16
         };
-        byte[] recvFram = null;
+
+       byte test[] = {
+               (byte)0x68 ,(byte)0x0E ,(byte)0x00 ,(byte)0x0E ,(byte)00 ,(byte)0x68 ,(byte)0xD9 ,(byte)0x86 ,(byte)0x06 ,(byte)0x51  ,(byte)0x01 ,(byte)0x06 ,(byte)0x00 ,(byte)0x12 ,(byte)0x02 ,(byte)0x70 ,(byte)0x00 ,(byte)0x00 ,(byte)0x00 ,(byte)0x01
+               ,(byte)0xD0 ,(byte)0x16
+       } ;
+      byte[] recvFram = null;
         int lenRecvFram;
         int port = 9998;
 
@@ -118,7 +123,8 @@ public class CL1GetOpt {
             //com.parse_msg_server(recvFram);
             System.out.println("->DEBUG:");
             for (int i = 0; i < 1; i++) {
-                CommunicationProtocol parseMessage = com.parse_message(login2);//hearbeat
+//                CommunicationProtocol parseMessage = com.parse_message(login2);//hearbeat
+                CommunicationProtocol parseMessage = com.parse_message(test);//hearbeat
                 System.out.println(i);
             }
             int as;
