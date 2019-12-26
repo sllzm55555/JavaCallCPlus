@@ -24,16 +24,17 @@ public class PackageUtils {
     }
 
     public static void main(String[] args) {
-//        System.load("D:\\OrientIntelligent\\svn\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
-        //E:\VS\DFSLPro\x64\Debug
+
         System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
         System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
-//        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\DFSLProJni.dll");
+
         PackageUtils packageUtils = new PackageUtils();
-        for (int i = 0; i < 10000000; i++) {
-            packageUtils.setParameter();
-            System.out.println(i);
-        }
+//        for (int i = 0; i < 10000000; i++) {
+//            packageUtils.setParameter();
+//            System.out.println(i);
+//        }
+
+        packageUtils.oldmain();
 
 //        packageUtils.queryParameter();
     }
@@ -202,7 +203,7 @@ public class PackageUtils {
         ProtocolContent protocolContent = new ProtocolContent();
         //地址域
         //序列号 行政区划码 机器型号 国家代码
-        protocolContent.setAddressField(new AddressField("中国", "成都", "99", "123456"));
+        protocolContent.setAddressField(new AddressField("86", "5106", "01", "123456"));
         //控制域
         //帧传输方向,帧计数位,帧有效位, 链路层功能码
         //帧计数位 帧有效位 链路层功能码 暂未设置
@@ -220,7 +221,9 @@ public class PackageUtils {
         extraMessage.setAuthorization(new byte[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15});
         protocolContent.setExtraMessage(extraMessage);
         //打包
-//        byte[] bytes = packageData(protocolContent);
+       // byte[] bytes = packageMessage(protocolContent);
+        CL1SetOpt cl1SetOpt = new CL1SetOpt();
+        byte[] message = cl1SetOpt.packageMessage(protocolContent);
     }
 
 
