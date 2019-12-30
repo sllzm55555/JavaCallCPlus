@@ -156,17 +156,17 @@ public class Cenumclass {
 //        E_HISDAT_LATITUDE       ((byte)210),	//纬度 latitude
         /*#######################################################################################*/
         /*清污机构*/
-        E_HISDAT_RMVCONTAMINATION((byte)211),	//removal of contamination 清污量
+        E_HISDAT_RMVCONTAMINATION((byte)210),	//removal of contamination 清污量
         /*#######################################################################################*/
         /*电机*/
-        E_HISDAT_MOTORPOWER     ((byte)212),	//motor power电机功率
-        E_HISDAT_MOTORSPEED     ((byte)213),	//motor speed电机转速
-        E_HISDAT_MOTORVOLTAGE   ((byte)214),	//motor voltage 电机电压
+        E_HISDAT_MOTORPOWER     ((byte)211),	//motor power电机功率
+        E_HISDAT_MOTORSPEED     ((byte)212),	//motor speed电机转速
+        E_HISDAT_MOTORVOLTAGE   ((byte)213),	//motor voltage 电机电压
         /*#######################################################################################*/
         /*版本信息*/
-        E_HISDAT_FIRMWAREVERSION((byte)215),	//硬件固件版本
-        E_HISDAT_SOFTWAREVERSION((byte)216),	//软件版本
-        E_HISDAT_RESERVE        ((byte)217);	//
+        E_HISDAT_FIRMWAREVERSION((byte)214),	//硬件固件版本
+        E_HISDAT_SOFTWAREVERSION((byte)215),	//软件版本
+        E_HISDAT_RESERVE        ((byte)216);	//
 
         private byte value;
 
