@@ -15,31 +15,72 @@ import java.util.List;
  * @version 1.0.0
  * @date 2019-09-16
  */
+
+class myT extends Thread {
+   // PackageUtils util;
+    int id;
+    myT(int input){
+        this.id = input;
+    }
+    public void run (){
+        PackageUtils packageUtils = new PackageUtils();
+//        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 1; i++) {
+            packageUtils.qureHistory();
+ //           System.out.println(i);
+        }
+
+     //   packageUtils.oldmain();
+
+        System.out.println("|--------------->id:"+this.id);
+    }
+}
 public class PackageUtils {
     private static String masterIpFormat = "IP:%s port:%s IP:%s port:%s,APN:%s";
+    private static String historyString = "{\"density\":15,\"points\":1,\"timeFlag\":{\"day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}";
     public static final String BIN_LIB = "E:\\Idea\\JavaCallCPlus1\\src\\orientIntelligent\\dll\\";
 
     public static String getMasterIpFormat() {
         return masterIpFormat;
     }
 
+
+
     public static void main(String[] args) {
 
         System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
         System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
 
-        PackageUtils packageUtils = new PackageUtils();
+//        PackageUtils packageUtils = new PackageUtils();
 //        for (int i = 0; i < 10000000; i++) {
-//            packageUtils.setParameter();
+//            packageUtils.qureHistory();
 //            System.out.println(i);
 //        }
-
-        packageUtils.oldmain();
+//
+//        packageUtils.oldmain();
+        myT myt1=new myT(1);
+        myT myt2=new myT(2);
+        myT myt3=new myT(3);
+        myT myt4=new myT(4);
+        myT myt5=new myT(5);
+        myT myt6=new myT(6);
+        myT myt7=new myT(7);
+        myT myt8=new myT(8);
+        myT myt9=new myT(9);
+        myt1.run();
+        myt2.run();
+        myt3.run();
+        myt4.run();
+        myt5.run();
+        myt6.run();
+        myt7.run();
+        myt8.run();
+        myt9.run();
 
 //        packageUtils.queryParameter();
     }
 
-    public  void setParameter()
+    public  void qureHistory()
     {
         ProtocolContent protocolContent = new ProtocolContent();
         //private ControlField controlField;
@@ -47,41 +88,43 @@ public class PackageUtils {
         //  1 private Cenumclass.E_transDir direction;
         controlField.setDirection(Cenumclass.E_transDir.E_TD_SVR_REQUEST);
         //  2 private Cenumclass.E_ctlFunCode cfc;
-        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_REQ1STDAT);
+        controlField.setCfc(Cenumclass.E_ctlFunCode.E_CFC_M_REQ2NDDAT);
         protocolContent.setControlField(controlField);
         //private AddressField addressField;
         AddressField addressField = new AddressField();
         // 1 private String countryCode;
         addressField.setCountryCode("86");
         // 2 private String zoneCode;
-        addressField.setZoneCode("0830");
+        addressField.setZoneCode("5106");
         // 3 private String robotCode;
         addressField.setRobotCode("01");
         // 4 private String serializeCode;
-        addressField.setSerializeCode("123456");
+        addressField.setSerializeCode("100009");
         protocolContent.setAddressField(addressField);
         //private LinkData linkData;
         LinkData linkData = new LinkData();
         // 1 private Cenumclass.E_appFuncCode applicationFunctionCode;
-        linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_SETPARAM);
+        linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_HISDATA);
         // 2 private List<DataUnit> dataUnitList;
         DataUnit dataUnit = new DataUnit();
 
-        dataUnit.setFn(Cenumclass.E_setParameter.E_SETPAR_MASIPPORT.getValue());
-        dataUnit.setPn(Cenumclass.E_Pn.E_PN_TERMAL.getValue());
+        dataUnit.setFn(Cenumclass.E_hisdat.E_HISDAT_WATERTEMP.getValue());
+        dataUnit.setPn(Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
         // String tmpStr = "zxcvbnm";
         //"IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
 //        String tmpStr = "IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
 //        String temp = "IP:%s port:%s IP:%s port:%s,APN:%s";
-        masterIpFormat = String.format(masterIpFormat, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
+       // masterIpFormat = String.format(masterIpFormat, "192.168.0.1", "8888", "188.188.114.114", "6666", "CMNET");
 
 //        System.out.println(masterIpFormat);
 
-        dataUnit.setData(masterIpFormat);
+        dataUnit.setData(historyString);
+      //  dataUnit.setData(masterIpFormat);
         List<DataUnit> unitList = new ArrayList<>();
         unitList.add(dataUnit);
         linkData.setDataUnitList(unitList);
         protocolContent.setLinkData(linkData);
+        System.out.println(protocolContent.getLinkData().getDataUnitList().get(0).getData());
         //private ExtraMessage extraMessage;
         // 1 private byte[] authorization;
         ExtraMessage extraMessage = new ExtraMessage();
@@ -224,6 +267,10 @@ public class PackageUtils {
        // byte[] bytes = packageMessage(protocolContent);
         CL1SetOpt cl1SetOpt = new CL1SetOpt();
         byte[] message = cl1SetOpt.packageMessage(protocolContent);
+        if(message == null)
+        {
+            System.out.println("message == null XXXXXXXXXXXXXXXXXx");
+        }
     }
 
 
