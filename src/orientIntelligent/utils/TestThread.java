@@ -10,7 +10,8 @@ import orientIntelligent.jni.Cenumclass;
 public class TestThread {
 
     public static void main(String[] args) {
-
+        System.load("E:\\Idea\\JavaCallCPlus\\src\\orientIntelligent\\dll\\pthreadVC2.dll");
+        System.load("E:\\VS\\DFSLPro\\x64\\Debug\\DFSLProJni.dll");
         //模拟次数
         for (int i = 0; i < 100; i++) {
             //模拟客户端

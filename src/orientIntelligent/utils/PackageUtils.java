@@ -25,9 +25,17 @@ class myT extends Thread {
     public void run (){
         PackageUtils packageUtils = new PackageUtils();
 //        for (int i = 0; i < 100000; i++) {
-        for (int i = 0; i < 1; i++) {
-            packageUtils.qureHistory();
+        for (int i = 0; i < 10000; i++) {
+            packageUtils.qureHistory
+                    (Cenumclass.E_hisdat.E_HISDAT_WATERTEMP.getValue(),Cenumclass.E_hisdat.E_HISDAT_ANMMONIANITROGEN.getValue(),Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
+            packageUtils.qureHistory
+                    (Cenumclass.E_hisdat.E_HISDAT_SALINITY.getValue(),Cenumclass.E_hisdat.E_HISDAT_WATERLV.getValue(),Cenumclass.E_Pn.E_PN_HYDROLOGICAL.getValue());
+            packageUtils.qureHistory
+                    (Cenumclass.E_hisdat.E_HISDAT_WINDDIR.getValue(),Cenumclass.E_hisdat.E_HISDAT_RAINFALL.getValue(),Cenumclass.E_Pn.E_PN_METEOROLOGICAL.getValue());
+            packageUtils.qureHistory
+                    (Cenumclass.E_hisdat.E_RLTDAT_LONGANDLAT.getValue(),Cenumclass.E_hisdat.E_RLTDAT_LONGANDLAT.getValue(),Cenumclass.E_Pn.E_PN_POSITION.getValue());
  //           System.out.println(i);
+          //  Cenumclass.E_Pn.E_PN_WATERQUALITY
         }
 
      //   packageUtils.oldmain();
@@ -80,7 +88,7 @@ public class PackageUtils {
 //        packageUtils.queryParameter();
     }
 
-    public  void qureHistory()
+    public  void qureHistory(byte fnstart,byte fnend,byte pn)
     {
         ProtocolContent protocolContent = new ProtocolContent();
         //private ControlField controlField;
@@ -106,10 +114,18 @@ public class PackageUtils {
         // 1 private Cenumclass.E_appFuncCode applicationFunctionCode;
         linkData.setApplicationFunctionCode(Cenumclass.E_appFuncCode.E_AFC_HISDATA);
         // 2 private List<DataUnit> dataUnitList;
-        DataUnit dataUnit = new DataUnit();
 
-        dataUnit.setFn(Cenumclass.E_hisdat.E_HISDAT_WATERTEMP.getValue());
-        dataUnit.setPn(Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
+        List<DataUnit> unitList = new ArrayList<>();
+        for (int i = fnstart; i <= fnend; i++) {
+            DataUnit dataUnit = new DataUnit();
+            dataUnit.setFn((byte)(i));
+            dataUnit.setPn(pn);
+            dataUnit.setData(historyString);
+            unitList.add(dataUnit);
+        }
+      //  dataUnit.setFn(Cenumclass.E_hisdat.E_HISDAT_WATERTEMP.getValue());
+
+       // dataUnit.setPn(Cenumclass.E_Pn.E_PN_WATERQUALITY.getValue());
         // String tmpStr = "zxcvbnm";
         //"IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
 //        String tmpStr = "IP:192.168.0.1 port:8888: IP:188.188.114.114 port:6666,APN:CMNET";
@@ -118,10 +134,10 @@ public class PackageUtils {
 
 //        System.out.println(masterIpFormat);
 
-        dataUnit.setData(historyString);
+
       //  dataUnit.setData(masterIpFormat);
-        List<DataUnit> unitList = new ArrayList<>();
-        unitList.add(dataUnit);
+
+
         linkData.setDataUnitList(unitList);
         protocolContent.setLinkData(linkData);
         System.out.println(protocolContent.getLinkData().getDataUnitList().get(0).getData());
