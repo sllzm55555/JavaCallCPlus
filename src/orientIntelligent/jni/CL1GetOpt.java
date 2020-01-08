@@ -4,7 +4,7 @@ import orientIntelligent.entity.CommunicationProtocol;
 
 public class CL1GetOpt {
 
-    public   native CommunicationProtocol parse_message(byte[] bytes);
+    public synchronized static  native CommunicationProtocol parse_message(byte[] bytes);
 
 
 
