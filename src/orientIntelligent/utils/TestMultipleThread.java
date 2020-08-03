@@ -77,8 +77,9 @@ public class TestMultipleThread implements Runnable{
             dataUnit.setPn(pn.getValue());
             dataUnit.setFn(startIndex + i);
 //            private static String historyString
-//            = "{\"density\":15,\"points\":1,\"timeFlag\":{\"day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}";
-            dataUnit.setData("{\"density\":15,\"points\":1,\"timeFlag\":{\"day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}");
+//            = "{\"density\":15,\"points\":1,\"timeFlag\":{\day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}";
+//            dataUnit.setData("{\"density\":15,\"points\":1,\"timeFlag\":{\"day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}");
+            dataUnit.setData("{\"density\":15,\"points\":1,\"a15\":{\"day\":31,\"hour\":12,\"min\":0,\"month\":12,\"year\":19}}");
             unitList.add(dataUnit);
         }
         linkData.setDataUnitList(unitList);
